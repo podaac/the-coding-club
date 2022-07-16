@@ -16,7 +16,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -41,7 +40,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools_services.html">Tools and services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Everything about Cloud</a></li>
 <li class="toctree-l1"><a class="reference internal" href="providers.html">Data-providers’ resources</a></li>
@@ -49,6 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="faqs.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dia.html">Data in Action (DiA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coding_club.html">The Coding Club</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uwg_annual_2022.html">Welcome to PO.DAAC UWG Annual Meeting 2022</a></li>
 </ul>
 
@@ -76,31 +76,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="welcome-to-the-hitchhiker-s-guide-to-po-daac">
+  <section id="welcome-to-the-hitchhiker-s-guide-to-po-daac">
 <h1>Welcome to The Hitchhiker’s Guide to PO.DAAC!<a class="headerlink" href="#welcome-to-the-hitchhiker-s-guide-to-po-daac" title="Permalink to this heading"></a></h1>
 <p>The NASA’s Physical Oceanography Distributed Active Archive Center (PO.DAAC) is an element of the Earth Observing System Data and Information System (EOSDIS), established during the late 1980s, the dawn of the modern satellite altimetry. The data archives have evolved from altimetry alone at the beginning to a wide variety of data products including major NASA missions such as Jason-series altimetry, Sentinel-6MF, GRACE and GRACE-follow on (GRACE-FO), as well field campaigns and commercial oceanography observations. PO.DAAC also provides tools and services for access and view data archives. PO.DAAC has been aggressively evolving along with rapidly increasing volume of data and the advancement of computing technologies. We are all hitchhikers at some point to this PO.DAAC. This document is designed to provide a brief overview of PO.DAAC, data achieves, basic tools and services. Hope you find this useful. Feedbacks are welcome (<a class="reference external" href="mailto:podaac&#37;&#52;&#48;podaac&#46;jpl&#46;nasa&#46;gov">podaac<span>&#64;</span>podaac<span>&#46;</span>jpl<span>&#46;</span>nasa<span>&#46;</span>gov</a>).</p>
 <p>This guidebook is organized as follow. Section 1 introduces PO.DAAC’s history. Section 2 introduces the current data archives. Section 3 walks you through the basic tools and services for data discovery and access. Section 4 is dedicated to cloud-related topics. Section 5 provides information for data providers. Section 6 provides information related to data and software management plans for NASA ROSES proposals. Section 7 collects the answers to some frequently asked questions (FAQs).</p>
@@ -108,24 +84,30 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#milestones">Milestones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#the-short-lived-seasat-the-cornerstone">The short-lived Seasat – the cornerstone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#the-pods-and-nods-from-tapes-to-cd-roms">The PODS and NODS – from tapes to CD-ROMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#the-beginning-of-po-daac-ftp-and-https">The beginning of PO.DAAC – FTP and HTTPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history.html#the-need-of-cloud-by-swot-a-new-era">The need of Cloud by SWOT – a New Era</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_archives.html#the-list-of-all-podaac-datasets">The list of all PODAAC datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_archives.html#the-list-of-the-cloud-enabled-datasets">The list of the Cloud-enabled datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives and Access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_archives.html#the-very-first-thing-edl-and-netrc">The very first thing – EDL and .netrc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_archives.html#find-your-data-the-search-engines">Find your data – The search engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_archives.html#a-glance-of-all-data-collections">A glance of All data collections</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools_services.html">Tools and services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tools_services.html#data-discovery">Data discovery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tools_services.html#browse-images-from-data">Browse images from data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tools_services.html#subset-large-data">Subset Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools_services.html#the-mighty-podaac-data-subscriber">The mighty podaac-data-subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools_services.html#a-quick-look-at-the-data-through-soto-and-worldview">A quick look at the data through SOTO and Worldview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools_services.html#subset-large-data">Subset large data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Everything about Cloud</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cloud.html#why-cloud">Why Cloud?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html#why-use-cloud">Why use Cloud?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cloud.html#current-po-daac-data-migration-status">Current PO.DAAC data migration status</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cloud.html#surfing-ocean-data-in-the-cloud-the-beginners-guide-to-po-daac-in-the-nasa-earthdata-cloud">Surfing Ocean Data in the Cloud: The Beginners’ Guide to PO.DAAC in the NASA Earthdata Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud.html#the-beginners-guide-to-po-daac-in-the-nasa-earthdata-cloud">The Beginners’ Guide to PO.DAAC in the NASA Earthdata Cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cloud.html#cloud-computing-resources">Cloud computing resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cloud.html#examples-and-tutorials">Examples and Tutorials</a></li>
 </ul>
@@ -144,7 +126,8 @@
 <li class="toctree-l2"><a class="reference internal" href="roses_proposal.html#use-case-2">Use case 2</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="faqs.html">Frequently Asked Questions</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#about-cloud">About Cloud</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dia.html">Data in Action (DiA)</a><ul>
@@ -153,6 +136,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="coding_club.html">The Coding Club</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="uwg_annual_2022.html">Welcome to PO.DAAC UWG Annual Meeting 2022</a><ul>

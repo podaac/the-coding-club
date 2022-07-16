@@ -10,8 +10,8 @@ Time (Pacific)     Duration    Title                                            
 **Program**
 8:00AM             30       In-person participants check in
 8:30AM             15       Welcome                                             Jinbo Wang
-8:45AM             15       UWG perspectives                                    Kyla Drushka/Phil Thompson
-9:00AM             10       ESDIS perspectives                                  Sara Lubkin/Jeanne Behnke
+8:45AM             10       ESDIS perspectives                                  Sara Lubkin/Jeanne Behnke
+8:55AM             15       UWG perspectives                                    Kyla Drushka/Phil Thompson
 9:10AM             10       Discussions
 9:20AM             20       PO.DAAC achievements and status                     Suresh Vannan
 9:40AM             20       **Coffee break**

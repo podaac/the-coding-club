@@ -26,6 +26,7 @@ This document is under development. You may find empty and/or incomplete section
    faqs
    dia
    coding_club
+   glossary
    uwg_annual_2022
 
 

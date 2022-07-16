@@ -16,12 +16,11 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Everything about Cloud" href="cloud.html" />
-    <link rel="prev" title="Data Archives" href="data_archives.html" /> 
+    <link rel="prev" title="Data Archives and Access" href="data_archives.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,11 +41,14 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives and Access</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tools and services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#data-discovery">Data discovery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#browse-images-from-data">Browse images from data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#subset-large-data">Subset Large Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mighty-podaac-data-subscriber">The mighty podaac-data-subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-quick-look-at-the-data-through-soto-and-worldview">A quick look at the data through SOTO and Worldview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subset-large-data">Subset large data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">HiTiDE</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Everything about Cloud</a></li>
@@ -82,42 +84,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="tools-and-services">
+  <section id="tools-and-services">
 <h1>Tools and services<a class="headerlink" href="#tools-and-services" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<section id="data-discovery">
-<h2>Data discovery<a class="headerlink" href="#data-discovery" title="Permalink to this heading"></a></h2>
+<section id="the-mighty-podaac-data-subscriber">
+<h2>The mighty podaac-data-subscriber<a class="headerlink" href="#the-mighty-podaac-data-subscriber" title="Permalink to this heading"></a></h2>
+<p>Data lives in a server, which is called on-premise if it is in a cooled room at Pasadena several miles to our office at JPL but called <strong>Cloud</strong> if it is in one of the Amazon Web Service (AWS) facilities. The point is that basic data access should not be very different regardless where the data are hosted.</p>
+<p>The <a class="reference external" href="https://github.com/podaac/data-subscriber">podaac-data-subscriber</a> makes downloading the PODAAC data super easy.</p>
+<p>If your workflow involves downloading data to your local machine, the data-subscriber is the recommended tool to use. The github page has clear instruction on installation and usage.</p>
 </section>
-<section id="browse-images-from-data">
-<h2>Browse images from data<a class="headerlink" href="#browse-images-from-data" title="Permalink to this heading"></a></h2>
+<section id="a-quick-look-at-the-data-through-soto-and-worldview">
+<h2>A quick look at the data through SOTO and Worldview<a class="headerlink" href="#a-quick-look-at-the-data-through-soto-and-worldview" title="Permalink to this heading"></a></h2>
 </section>
 <section id="subset-large-data">
-<h2>Subset Large Data<a class="headerlink" href="#subset-large-data" title="Permalink to this heading"></a></h2>
+<h2>Subset large data<a class="headerlink" href="#subset-large-data" title="Permalink to this heading"></a></h2>
+<p>Subsetting capability is necessary for large data with high spatial resolution. <a class="reference external" href="https://podaac-tools.jpl.nasa.gov/hitide/">HiTiDE</a> provides subsetting services for a small group of high-resolution data collections.</p>
+<section id="id1">
+<h3>HiTiDE<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="_images/hitide.png"><img alt="HiTiDE" src="_images/hitide.png" style="width: 700px;" /></a>
+</section>
 </section>
 </section>
 
@@ -125,7 +111,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="data_archives.html" class="btn btn-neutral float-left" title="Data Archives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_archives.html" class="btn btn-neutral float-left" title="Data Archives and Access" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="cloud.html" class="btn btn-neutral float-right" title="Everything about Cloud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

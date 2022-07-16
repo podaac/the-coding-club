@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Archives &mdash; The Hitchhiker&#39;s Guide to PO.DAAC  documentation</title>
+  <title>Data Archives and Access &mdash; The Hitchhiker&#39;s Guide to PO.DAAC  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +16,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,9 +41,14 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Archives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-list-of-all-podaac-datasets">The list of all PODAAC datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-list-of-the-cloud-enabled-datasets">The list of the Cloud-enabled datasets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Archives and Access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-very-first-thing-edl-and-netrc">The very first thing – EDL and .netrc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find-your-data-the-search-engines">Find your data – The search engines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nasa-earthdata-search">NASA Earthdata search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search-through-podaac-website">Search through PODAAC website</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#a-glance-of-all-data-collections">A glance of All data collections</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools_services.html">Tools and services</a></li>
@@ -71,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Data Archives</li>
+      <li>Data Archives and Access</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/data_archives.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,41 +85,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="data-archives">
-<h1>Data Archives<a class="headerlink" href="#data-archives" title="Permalink to this heading"></a></h1>
+  <section id="data-archives-and-access">
+<h1>Data Archives and Access<a class="headerlink" href="#data-archives-and-access" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>Search engine can speed up our quest for certain dataset or granules, but a complete list of data products, when the total number is less than several hundred, can be very handy at times. Here they are.</p>
-<section id="the-list-of-all-podaac-datasets">
-<h2>The list of all PODAAC datasets<a class="headerlink" href="#the-list-of-all-podaac-datasets" title="Permalink to this heading"></a></h2>
+<section id="the-very-first-thing-edl-and-netrc">
+<h2>The very first thing – EDL and .netrc<a class="headerlink" href="#the-very-first-thing-edl-and-netrc" title="Permalink to this heading"></a></h2>
+<p>NASA Earthdata, which includes PO.DAAC data, requires Earthdata Login (EDL) to access. The very first thing is to register an Earthdata Login account (free) from <a class="reference external" href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>.</p>
+<p>Once you have registered the EDL, make sure to generate the <strong>.netrc</strong> file in your home directory. Some podaac tools, such as podaac-data-subscriber, will automatically read your EDL credential from the .netrc file. The result is a lifesaver: you do not need to enter your username and password every time you try to download some data.</p>
+<p>Were you a hitchhiker to the Galaxy, <strong>.netrc</strong> is your towel. Spend some time, complete it, test it, set it once and for all. It is just a text file with two lines after all. It will save you from the frustration caused by constant popups of the out-of-nowhere error messages blocking you from getting to the data.</p>
 </section>
-<section id="the-list-of-the-cloud-enabled-datasets">
-<h2>The list of the Cloud-enabled datasets<a class="headerlink" href="#the-list-of-the-cloud-enabled-datasets" title="Permalink to this heading"></a></h2>
-<p><a class="reference external" href="https://github.com/podaac/Data-Recipes/blob/main/dataset-introduction/All_POCLOUD_Data.ipynb">This link</a> provide a list of all PO.DAAC datasets in the cloud.</p>
+<section id="find-your-data-the-search-engines">
+<h2>Find your data – The search engines<a class="headerlink" href="#find-your-data-the-search-engines" title="Permalink to this heading"></a></h2>
+<section id="nasa-earthdata-search">
+<h3>NASA Earthdata search<a class="headerlink" href="#nasa-earthdata-search" title="Permalink to this heading"></a></h3>
+<p>PODAAC has 835 data collections, 344 of which have been migrated to the Cloud. By the Fall of 2022, all of the 835 collections will be in the Cloud and PODAAC on-premise services will be gradully deprecated. How to find a data collection that fits to your need?</p>
+<p>The ultimate search engine for the NASA Earthdata is through Earthdata Search <a class="reference external" href="https://search.earthdata.nasa.gov/search">https://search.earthdata.nasa.gov/search</a>. You can find not only PODAAC data but the data collections from all 12 DAACs. It is built on a centralized database called <a class="reference external" href="https://cmr.earthdata.nasa.gov/search/">The Common Metadata Repository (CMR)</a>, currently has 8729 data collections.</p>
+<p>The Earthdata search’s interface is straightforward to use:</p>
+<a class="reference internal image-reference" href="_images/earthdatasearch.png"><img alt="Earthdata search" src="_images/earthdatasearch.png" style="width: 700px;" /></a>
+</section>
+<section id="search-through-podaac-website">
+<h3>Search through PODAAC website<a class="headerlink" href="#search-through-podaac-website" title="Permalink to this heading"></a></h3>
+<p>If you have no interest of non-PODAAC data, <a class="reference external" href="https://podaac.jpl.nasa.gov/datasetlist">https://podaac.jpl.nasa.gov/datasetlist</a> can be a good place to find your data. The filter function in the left panel is particularly useful to narrow down a search.</p>
+<a class="reference internal image-reference" href="_images/podaacsearch.png"><img alt="PODAAC search" src="_images/podaacsearch.png" style="width: 700px;" /></a>
+</section>
+</section>
+<section id="a-glance-of-all-data-collections">
+<h2>A glance of All data collections<a class="headerlink" href="#a-glance-of-all-data-collections" title="Permalink to this heading"></a></h2>
+<p>Search engine can speed up our quest for certain dataset or granules, but have you ever wondered for a complete list of all data collections? I have. When the total number is less than several hundred, a complete list can be very handy at times. Here they are.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://podaac.jpl.nasa.gov/datasetlist?view=table">This link points to a table of all PODAAC data collections</a></p></li>
+<li><p><a class="reference external" href="https://podaac.jpl.nasa.gov/datasetlist?view=table&amp;provider=POCLOUD">This link points to a table of all PODAAC data collections in the cloud</a>.</p></li>
+</ul>
 </section>
 </section>
 

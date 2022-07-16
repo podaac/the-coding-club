@@ -1,17 +1,12 @@
-.. The Hitchhiker's Guide to PO.DAAC documentation master file, created by
-   sphinx-quickstart on Fri Jul 15 11:10:49 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Agenda
 -------------
 
-Day 1
-~~~~~~~
+Day 1, August 4, 2022
+~~~~~~~~~~~~~~~~~~~~~~~
 
-================== ======== =================================================== =============
+================== ======== =================================================== ============================
 Time (Pacific)     Duration    Title                                               Presenter
-================== ======== =================================================== =============
+================== ======== =================================================== ============================
 **Program**
 8:00AM             30       In-person participants check in
 8:30AM             15       Welcome                                             Jinbo Wang
@@ -38,4 +33,23 @@ Time (Pacific)     Duration    Title                                            
 3:35PM             25       UWG-led discussions                                 Kyla Drushka/Phil Thompson
 4:10PM                      Day End
 6:30PM --                   Group dinner
-================== ======== =================================================== =============
+================== ======== =================================================== ============================
+
+
+Day 2, August 5, 2022
+~~~~~~~~~~~~~~~~~~~~~
+
+================== ======== =================================================== =============================
+Time (Pacific)     Duration    Title                                               Presenter
+================== ======== =================================================== =============================
+8:00AM             30       In-person participants check in
+8:30AM             60       UWG presentation                                    UWG (moderated by Kyla/Phil)
+9:30AM             20       **Coffee break**
+9:50AM             40       PO.DAAC Strategic Vision & Roadmap (20+20min)       Suresh Vannan
+10:30AM            90       UWG Breakout to Decide 2022 Recommendations
+12:00PM            10       **break**
+12:10AM            20       High-level discussion with PO.DAAC management
+12:30PM            60       Lunch (cafe 303)
+2:00PM             120      JPL Tour
+4:00PM                      Meeting close
+================== ======== =================================================== =============================

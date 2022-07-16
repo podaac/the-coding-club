@@ -17,6 +17,7 @@ This document is under development. You may find empty and/or incomplete section
    :maxdepth: 2
    :caption: Contents:
 
+   uwg_annual_2022
    history
    data_archives
    tools_services
@@ -27,7 +28,7 @@ This document is under development. You may find empty and/or incomplete section
    dia
    coding_club
    glossary
-   uwg_annual_2022
+
 
 
 

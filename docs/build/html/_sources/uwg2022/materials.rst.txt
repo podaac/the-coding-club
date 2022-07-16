@@ -5,3 +5,10 @@
 
 Meeting Materials
 ------------------
+
+* Introduction to PODAAC
+* The PODAAC presentation slide deck
+* `Cloud Primer (Why use Cloud) <https://cdn.earthdata.nasa.gov/conduit/upload/14963/01_Why_Use_the_Cloud.pdf>`_
+* PODAAC website
+* OPeNDAP introduction
+* 

@@ -1,10 +1,12 @@
 # EC2-Jupyter-Setup.md
 
-EC2 and JupyterLab Setup Instructions from Coding Club #1 and #2
+EC2 and JupyterLab Setup Instructions from PODAAC Coding Club #1 and #2
 
 ## Coding Club #1
 
-*Original author: Cedric David*
+*Contributors: Jack McNeils, Cedric David
+
+The following steps are specific for JPL Cloud. It is usually simplier with a less stringent cybersecurity measure. 
 
 **Create EC2 Instance**
 

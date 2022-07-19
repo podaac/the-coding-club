@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data-providers’ resources &mdash; The Hitchhiker&#39;s Guide to PO.DAAC  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -40,15 +39,20 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="uwg_annual_2022.html">Welcome to PO.DAAC UWG Annual Meeting 2022</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools_services.html">Tools and services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Everything about Cloud</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data-providers’ resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#first-contact">First contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#first-contact">First contact</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-determine-whether-a-dataset-fits-to-po-daac">How to determine whether a dataset fits to PO.DAAC?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-about-model-data">What about model data?</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#prepare-your-data">Prepare your data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deliver-your-sample-data-to-po-daac">Deliver your sample data to PO.DAAC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-publication-timeline">Data publication timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-publication-procedure-and-timeline">Data publication procedure and timeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dos-and-donts">Dos and Donts</a></li>
 </ul>
 </li>
@@ -56,7 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="faqs.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dia.html">Data in Action (DiA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coding_club.html">The Coding Club</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uwg_annual_2022.html">Welcome to PO.DAAC UWG Annual Meeting 2022</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 </ul>
 
         </div>
@@ -83,26 +87,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="data-providers-resources">
+  <div class="section" id="data-providers-resources">
 <h1>Data-providers’ resources<a class="headerlink" href="#data-providers-resources" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<section id="first-contact">
+<div class="section" id="first-contact">
 <h2>First contact<a class="headerlink" href="#first-contact" title="Permalink to this heading"></a></h2>
-</section>
-<section id="prepare-your-data">
+<p>NASA Earthdata mainly serves the data conservation for the NASA projects including big missions such as <a class="reference external" href="https://podaac.jpl.nasa.gov/SWOT?sections=data">SWOT</a>, field campaigns like the Submesoscale Ocean Dynamics (<a class="reference external" href="https://podaac.jpl.nasa.gov/S-MODE?sections=data">S-MODE</a>), as well as NASA funded PI-led research projects (e.g., the <a class="reference external" href="https://podaac.jpl.nasa.gov/dataset/OSCAR_L4_OC_FINAL_V2.0?ids=&amp;values=&amp;search=oscar&amp;provider=POCLOUD">OSCAR project</a>). In addition, satellite data products from other agencies may be hosted per multi-agency agreement.</p>
+<div class="section" id="how-to-determine-whether-a-dataset-fits-to-po-daac">
+<h3>How to determine whether a dataset fits to PO.DAAC?<a class="headerlink" href="#how-to-determine-whether-a-dataset-fits-to-po-daac" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>NASA missions</dt><dd><p>should have made arrangement with ESDS on the project level usually before the launch of a satellite or a campaign.</p>
+</dd>
+<dt>For NASA-funded PI-led project,</dt><dd><p>it is recommended to inform PODAAC as early as possible after a proposal is selected. The point of contact at PODAAC is the project scientist (Jinbo Wang) and the project manager (Suresh Vannan). After receiving the notice, we will work with the PI on data acquisition package to be submitted to ESDS for review and approval.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="what-about-model-data">
+<h3>What about model data?<a class="headerlink" href="#what-about-model-data" title="Permalink to this heading"></a></h3>
+<p>Numerical models can easily produce outputs on an order of petabytes. Determining their suitability to PODAAC is not always easy, but there are several guideline to follow.</p>
+<ol class="arabic simple">
+<li><p>Is the simulation sponsored by NASA missions and/or programs? For example, ECCO is sponsored by the NASA PO program. ECCO simulation (llc4320) was sponsored by SWOT. Both of them are in PODAAC, but due to the size of llc4320, only a small subset is in PODAAC. This is a result of a discussion among SWOT Project scientist, PODAAC and ESDS.</p></li>
+<li><p>Simulations that are less relevant to NASA are less likely eligible.</p></li>
+<li><p>For questions, please send inquiries to the Project scientist and manager.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="prepare-your-data">
 <h2>Prepare your data<a class="headerlink" href="#prepare-your-data" title="Permalink to this heading"></a></h2>
-</section>
-<section id="deliver-your-sample-data-to-po-daac">
+</div>
+<div class="section" id="deliver-your-sample-data-to-po-daac">
 <h2>Deliver your sample data to PO.DAAC<a class="headerlink" href="#deliver-your-sample-data-to-po-daac" title="Permalink to this heading"></a></h2>
-</section>
-<section id="data-publication-timeline">
-<h2>Data publication timeline<a class="headerlink" href="#data-publication-timeline" title="Permalink to this heading"></a></h2>
-</section>
-<section id="dos-and-donts">
+</div>
+<div class="section" id="data-publication-procedure-and-timeline">
+<h2>Data publication procedure and timeline<a class="headerlink" href="#data-publication-procedure-and-timeline" title="Permalink to this heading"></a></h2>
+</div>
+<div class="section" id="dos-and-donts">
 <h2>Dos and Donts<a class="headerlink" href="#dos-and-donts" title="Permalink to this heading"></a></h2>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

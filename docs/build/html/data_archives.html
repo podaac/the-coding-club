@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data Archives and Access &mdash; The Hitchhiker&#39;s Guide to PO.DAAC  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -90,16 +89,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="data-archives-and-access">
+  <div class="section" id="data-archives-and-access">
 <h1>Data Archives and Access<a class="headerlink" href="#data-archives-and-access" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<section id="the-very-first-thing-edl-and-netrc">
+<div class="section" id="the-very-first-thing-edl-and-netrc">
 <h2>The very first thing – EDL and .netrc<a class="headerlink" href="#the-very-first-thing-edl-and-netrc" title="Permalink to this heading"></a></h2>
 <p>NASA Earthdata, which includes PO.DAAC data, requires Earthdata Login (EDL) to access. The very first thing is to register an Earthdata Login account (free) from <a class="reference external" href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>.</p>
 <p>Once you have registered the EDL, make sure to generate the <strong>.netrc</strong> file in your home directory. Some podaac tools, such as podaac-data-subscriber, will automatically read your EDL credential from the .netrc file. The result is a lifesaver: you do not need to enter your username and password every time you try to download some data.</p>
 <p>Here is a well-written instruction from the <a class="reference external" href="https://github.com/podaac/data-subscriber">podaac-data-subscriber</a> github page:</p>
-<section id="step-1-get-earthdata-login">
+<div class="section" id="step-1-get-earthdata-login">
 <h3>Step 1:  Get Earthdata Login<a class="headerlink" href="#step-1-get-earthdata-login" title="Permalink to this heading"></a></h3>
 <p>This step is needed only if you dont have an Earthdata login already.</p>
 <p>From <a class="reference external" href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>:</p>
@@ -107,8 +106,8 @@
 <div><p><em>The Earthdata Login provides a single mechanism for user registration and profile  management for all EOSDIS system components (DAACs, Tools, Services). Your Earthdata login   also helps the EOSDIS program better understand the usage of EOSDIS services to improve  user experience through customization of tools and improvement of services. EOSDIS data are  openly available to all and free of charge except where governed by international  agreements.</em></p>
 </div></blockquote>
 <p>For setting up your authentication, see the notes on the <cite>netrc</cite> file below.</p>
-</section>
-<section id="step-2-setup-your-earthdata-login">
+</div>
+<div class="section" id="step-2-setup-your-earthdata-login">
 <h3>Step 2: Setup your Earthdata Login<a class="headerlink" href="#step-2-setup-your-earthdata-login" title="Permalink to this heading"></a></h3>
 <p>The netrc used within the script  will allow Python scripts to log into any Earthdata Login without being prompted for
 credentials every time you run. The netrc file should be placed in your HOME directory.
@@ -135,32 +134,32 @@ To find the location of your HOME directory</p>
 </pre></div>
 </div>
 <p>Were you a hitchhiker to the Galaxy, <strong>.netrc</strong> is your towel. Spend some time, complete it, test it, set it once and for all. It is just a text file with three lines after all. It will save you from the frustration caused by constant popups of the out-of-nowhere error messages blocking you from getting to the data.</p>
-</section>
-</section>
-<section id="find-your-data">
+</div>
+</div>
+<div class="section" id="find-your-data">
 <h2>Find your data<a class="headerlink" href="#find-your-data" title="Permalink to this heading"></a></h2>
-<section id="a-glance-of-all-data-collections">
+<div class="section" id="a-glance-of-all-data-collections">
 <h3>A glance of All data collections<a class="headerlink" href="#a-glance-of-all-data-collections" title="Permalink to this heading"></a></h3>
 <p>Have you ever wondered for a complete list of all data collections hosted by PODAAC? I have. When the total number is less than several hundred, a complete list can be very handy at times. Here they are.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://podaac.jpl.nasa.gov/datasetlist?view=table">This link points to a table of all PODAAC data collections</a></p></li>
 <li><p><a class="reference external" href="https://podaac.jpl.nasa.gov/datasetlist?view=table&amp;provider=POCLOUD">This link points to a table of all PODAAC data collections in the cloud</a>.</p></li>
 </ul>
-</section>
-<section id="nasa-earthdata-search">
+</div>
+<div class="section" id="nasa-earthdata-search">
 <h3>NASA Earthdata search<a class="headerlink" href="#nasa-earthdata-search" title="Permalink to this heading"></a></h3>
 <p>PODAAC has 835 data collections, 344 of which have been migrated to the Cloud. By the Fall of 2022, all of the 835 collections will be in the Cloud and PODAAC on-premise services will be gradully deprecated. How to find a data collection that fits to your need?</p>
 <p>The ultimate search engine for the NASA Earthdata is through Earthdata Search <a class="reference external" href="https://search.earthdata.nasa.gov/search">https://search.earthdata.nasa.gov/search</a>. You can find not only PODAAC data but the data collections from all 12 DAACs. It is built on a centralized database called <a class="reference external" href="https://cmr.earthdata.nasa.gov/search/">The Common Metadata Repository (CMR)</a>, currently has 8729 data collections.</p>
 <p>The Earthdata search’s interface is straightforward to use:</p>
 <a class="reference internal image-reference" href="_images/earthdatasearch.png"><img alt="Earthdata search" src="_images/earthdatasearch.png" style="width: 700px;" /></a>
-</section>
-<section id="search-through-podaac-website">
+</div>
+<div class="section" id="search-through-podaac-website">
 <h3>Search through PODAAC website<a class="headerlink" href="#search-through-podaac-website" title="Permalink to this heading"></a></h3>
 <p>If you have no interest of non-PODAAC data, <a class="reference external" href="https://podaac.jpl.nasa.gov/datasetlist">https://podaac.jpl.nasa.gov/datasetlist</a> can be a good place to find your data. The filter function in the left panel is particularly useful to narrow down a search.</p>
 <a class="reference internal image-reference" href="_images/podaacsearch.png"><img alt="PODAAC search" src="_images/podaacsearch.png" style="width: 700px;" /></a>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>

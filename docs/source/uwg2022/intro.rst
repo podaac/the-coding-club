@@ -56,3 +56,10 @@ Meetings and Communications
 * PO.DAAC will cover travel expenses for non-government employees
 * Materials and other information may be disseminated throughout the year.
 * UWG members are encouraged to reach out to the PO.DAAC Project Scientist at any point during their term with any findings, issues, or inquiries.
+
+PO.DAAC Interfaces
+~~~~~~~~~~~~~~~~~~~~
+
+.. image:: ../media/podaac_rela.png
+   :width: 700
+   :alt: PODAAC Interfaces

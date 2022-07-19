@@ -102,6 +102,18 @@ This is a common scenario for those who have never used AWS cloud nor have insti
 
 This is a scenario that can be very time consuming and frustrating. We strongly suggest that you find and pair with a system admin to understand some basic IT concepts, such as Routing, Subnet, internet gateway, and `Amazon Virtual Private Cloud (VPC) <https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html>`_. If you are from a NASA center, the NASA cybersecurity rules may add another layer of complexity preventing you from a quick set up.
 
+Where to find tutorials and examples?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Earthdata Cloud Primer Cloud Primer for Amazon Web Services https://www.earthdata.nasa.gov/learn/webinars-and-tutorials/cloud-primer-amazon-web-services
+#. 2021 Cloud hackathon w/ Openscapes https://nasa-openscapes.github.io/2021-Cloud-Hackathon/
+#. 2022 SWOT Oceanography PI Cloud hackathon
+#. OPeNDAP in the cloud https://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud
+#. Harmony subsetting https://github.com/podaac/tutorials/blob/master/notebooks/cloudwebinar/harmony_subset.py
+#. Working with ECCO in the cloud https://github.com/podaac/ECCO
+#. Study Amazon Estuaries with Data from the EOSDIS Cloud https://github.com/podaac/tutorials/blob/master/notebooks/SWOT-EA-2021/Estuary_explore_inCloud_zarr.ipynb
+
+
 Knowledge base
 ~~~~~~~~~~~~~~~~~~
 

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Everything about Cloud &mdash; The Hitchhiker&#39;s Guide to PO.DAAC  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -60,11 +59,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#scenario-2-has-an-aws-account-but-need-to-start-from-scratch">Scenario #2 - Has an AWS account but need to start from scratch</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#where-to-find-tutorials-and-examples">Where to find tutorials and examples?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#knowledge-base">Knowledge base</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#spin-up-an-ec2">Spin up an EC2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh-to-an-ec2">SSH to an EC2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-necessary-software">Install necessary software</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ssh-to-an-ec2">SSH to an EC2</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="providers.html">Data-providers’ resources</a></li>
@@ -99,24 +100,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="everything-about-cloud">
+  <div class="section" id="everything-about-cloud">
 <h1>Everything about Cloud<a class="headerlink" href="#everything-about-cloud" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <p>Data migration to the cloud has been PO.DAAC’s focus in the past two years. A collection of resources is made available here <a class="reference external" href="https://podaac.jpl.nasa.gov/cloud-datasets/about">https://podaac.jpl.nasa.gov/cloud-datasets/about</a>.</p>
-<section id="why-use-cloud">
+<div class="section" id="why-use-cloud">
 <h2>Why use Cloud?<a class="headerlink" href="#why-use-cloud" title="Permalink to this heading"></a></h2>
 <p>The short answer is “The data produced by NASA missions, such as SWOT and NISAR, is getting too big”.</p>
 <p>The long answer can be found in <a class="reference external" href="https://cdn.earthdata.nasa.gov/conduit/upload/14963/01_Why_Use_the_Cloud.pdf">this article (PDF format),</a>.</p>
-</section>
-<section id="current-po-daac-data-migration-status">
+</div>
+<div class="section" id="current-po-daac-data-migration-status">
 <h2>Current PO.DAAC data migration status<a class="headerlink" href="#current-po-daac-data-migration-status" title="Permalink to this heading"></a></h2>
 <p>We are in Phase 5, the last phase of the data migration. Details can be found here <a class="reference external" href="https://podaac.jpl.nasa.gov/cloud-datasets/migration">https://podaac.jpl.nasa.gov/cloud-datasets/migration</a></p>
-</section>
-<section id="the-beginners-guide-to-po-daac-in-the-nasa-earthdata-cloud">
+</div>
+<div class="section" id="the-beginners-guide-to-po-daac-in-the-nasa-earthdata-cloud">
 <h2>The Beginners’ Guide to PO.DAAC in the NASA Earthdata Cloud<a class="headerlink" href="#the-beginners-guide-to-po-daac-in-the-nasa-earthdata-cloud" title="Permalink to this heading"></a></h2>
 <p>This PODAAC webinar captured well the workflows on cloud-based data.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dS2mlI6r-_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><section id="breakdown-of-the-webinar">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dS2mlI6r-_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div class="section" id="breakdown-of-the-webinar">
 <h3>Breakdown of the webinar:<a class="headerlink" href="#breakdown-of-the-webinar" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -158,11 +159,11 @@
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="cloud-computing-resources">
+</div>
+</div>
+<div class="section" id="cloud-computing-resources">
 <h2>Cloud computing resources<a class="headerlink" href="#cloud-computing-resources" title="Permalink to this heading"></a></h2>
-<section id="where-to-get-an-aws-cloud-account">
+<div class="section" id="where-to-get-an-aws-cloud-account">
 <h3>Where to get an AWS cloud account?<a class="headerlink" href="#where-to-get-an-aws-cloud-account" title="Permalink to this heading"></a></h3>
 <p>This is one of the most-asked question. Where to start? Below is a list of ranked choices.</p>
 <ol class="arabic simple">
@@ -187,12 +188,12 @@
 </dl>
 </li>
 </ol>
-</section>
-</section>
-<section id="cloud-based-workflows">
+</div>
+</div>
+<div class="section" id="cloud-based-workflows">
 <h2>Cloud-based workflows<a class="headerlink" href="#cloud-based-workflows" title="Permalink to this heading"></a></h2>
 <p>There is no single workflow that fits all needs. Below are several examples  using <a class="reference external" href="https://jupyter.org/">jupyter</a> as a working environment.</p>
-<section id="scenario-1-already-has-an-access-to-a-jupyterlab">
+<div class="section" id="scenario-1-already-has-an-access-to-a-jupyterlab">
 <h3>Scenario #1 - Already has an access to a jupyterlab<a class="headerlink" href="#scenario-1-already-has-an-access-to-a-jupyterlab" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><p><em>JupyterLab is a next-generation web-based user interface for Project Jupyter. It enables you to work with documents and activities such as Jupyter notebooks, text editors, terminals, and custom components in a flexible, integrated, and extensible manner.</em> — Project Jupyter</p>
@@ -209,8 +210,8 @@
 </ul>
 </li>
 </ol>
-</section>
-<section id="scenario-2-has-an-aws-account-but-need-to-start-from-scratch">
+</div>
+<div class="section" id="scenario-2-has-an-aws-account-but-need-to-start-from-scratch">
 <h3>Scenario #2 - Has an AWS account but need to start from scratch<a class="headerlink" href="#scenario-2-has-an-aws-account-but-need-to-start-from-scratch" title="Permalink to this heading"></a></h3>
 <p>This is a common scenario for those who have never used AWS cloud nor have institutional support, but were able to obtain an AWS free account. In this case, one need to</p>
 <ol class="arabic simple">
@@ -220,21 +221,35 @@
 <li><p>Start jupyterlab from EC2,</p></li>
 <li><p>Understand how to <em>ssh tunnel</em> to access to the EC2 jupyterlab environment through a web browser on your local machine.</p></li>
 </ol>
-<p>This is a scenario that can be very time consuming and frustrating. We strongly suggest that you find and pair with a system admin to understand some basic IT concepts, such as Routing, Subnet, internet gateway, and <a class="reference external" href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">Amazon Virtual Private Cloud (VPC)</a>. If you are from a NASA center, the cybersecurity rules may add another layer of complexity preventing you from a quick set up.</p>
-</section>
-</section>
-<section id="knowledge-base">
+<p>This is a scenario that can be very time consuming and frustrating. We strongly suggest that you find and pair with a system admin to understand some basic IT concepts, such as Routing, Subnet, internet gateway, and <a class="reference external" href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">Amazon Virtual Private Cloud (VPC)</a>. If you are from a NASA center, the NASA cybersecurity rules may add another layer of complexity preventing you from a quick set up.</p>
+</div>
+</div>
+<div class="section" id="where-to-find-tutorials-and-examples">
+<h2>Where to find tutorials and examples?<a class="headerlink" href="#where-to-find-tutorials-and-examples" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Earthdata Cloud Primer Cloud Primer for Amazon Web Services <a class="reference external" href="https://www.earthdata.nasa.gov/learn/webinars-and-tutorials/cloud-primer-amazon-web-services">https://www.earthdata.nasa.gov/learn/webinars-and-tutorials/cloud-primer-amazon-web-services</a></p></li>
+<li><p>2021 Cloud hackathon w/ Openscapes <a class="reference external" href="https://nasa-openscapes.github.io/2021-Cloud-Hackathon/">https://nasa-openscapes.github.io/2021-Cloud-Hackathon/</a></p></li>
+<li><p>2022 SWOT Oceanography PI Cloud hackathon</p></li>
+<li><p>OPeNDAP in the cloud <a class="reference external" href="https://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud">https://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud</a></p></li>
+<li><p>Harmony subsetting <a class="reference external" href="https://github.com/podaac/tutorials/blob/master/notebooks/cloudwebinar/harmony_subset.py">https://github.com/podaac/tutorials/blob/master/notebooks/cloudwebinar/harmony_subset.py</a></p></li>
+<li><p>Working with ECCO in the cloud <a class="reference external" href="https://github.com/podaac/ECCO">https://github.com/podaac/ECCO</a></p></li>
+<li><p>Study Amazon Estuaries with Data from the EOSDIS Cloud <a class="reference external" href="https://github.com/podaac/tutorials/blob/master/notebooks/SWOT-EA-2021/Estuary_explore_inCloud_zarr.ipynb">https://github.com/podaac/tutorials/blob/master/notebooks/SWOT-EA-2021/Estuary_explore_inCloud_zarr.ipynb</a></p></li>
+</ol>
+</div>
+<div class="section" id="knowledge-base">
 <h2>Knowledge base<a class="headerlink" href="#knowledge-base" title="Permalink to this heading"></a></h2>
 <p>The following is a result of the coding club activities.</p>
-<section id="spin-up-an-ec2">
+<div class="section" id="spin-up-an-ec2">
 <h3>Spin up an EC2<a class="headerlink" href="#spin-up-an-ec2" title="Permalink to this heading"></a></h3>
-</section>
-</section>
-<section id="ssh-to-an-ec2">
-<h2>SSH to an EC2<a class="headerlink" href="#ssh-to-an-ec2" title="Permalink to this heading"></a></h2>
-<p>Install necessary</p>
-</section>
-</section>
+</div>
+<div class="section" id="ssh-to-an-ec2">
+<h3>SSH to an EC2<a class="headerlink" href="#ssh-to-an-ec2" title="Permalink to this heading"></a></h3>
+</div>
+<div class="section" id="install-necessary-software">
+<h3>Install necessary software<a class="headerlink" href="#install-necessary-software" title="Permalink to this heading"></a></h3>
+</div>
+</div>
+</div>
 
 
            </div>

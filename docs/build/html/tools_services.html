@@ -43,7 +43,8 @@
 <li class="toctree-l1"><a class="reference internal" href="history.html">PO.DAAC history</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_archives.html">Data Archives and Access</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tools and services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-mighty-podaac-data-subscriber">The mighty podaac-data-subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mighty-podaac-data-subscriber-download-data-using-one-line">The mighty podaac-data-subscriber - download data using one line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-conventional-way-using-wget-and-curl">The conventional way using wget and curl</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#a-quick-look-at-the-data-through-soto-and-worldview">A quick look at the data through SOTO and Worldview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#subset-large-data">Subset large data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">HiTiDE</a></li>
@@ -88,11 +89,15 @@
 <h1>Tools and services<a class="headerlink" href="#tools-and-services" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="the-mighty-podaac-data-subscriber">
-<h2>The mighty podaac-data-subscriber<a class="headerlink" href="#the-mighty-podaac-data-subscriber" title="Permalink to this heading"></a></h2>
-<p>Data lives in a server, which is called on-premise if it is in a cooled room at Pasadena several miles to our office at JPL but called <strong>Cloud</strong> if it is in one of the Amazon Web Service (AWS) facilities. The point is that basic data access should not be very different regardless where the data are hosted.</p>
-<p>The <a class="reference external" href="https://github.com/podaac/data-subscriber">podaac-data-subscriber</a> makes downloading the PODAAC data super easy.</p>
-<p>If your workflow involves downloading data to your local machine, the data-subscriber is the recommended tool to use. The github page has clear instruction on installation and usage.</p>
+<div class="section" id="the-mighty-podaac-data-subscriber-download-data-using-one-line">
+<h2>The mighty podaac-data-subscriber - download data using one line<a class="headerlink" href="#the-mighty-podaac-data-subscriber-download-data-using-one-line" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference external" href="https://github.com/podaac/data-subscriber">podaac-data-subscriber</a> makes downloading the PODAAC data in the cloud super easy.</p>
+<p>If your workflow involves downloading data to your local machine, the data-subscriber is the recommended tool to use. Its github page has a clear instruction on the installation and usage.</p>
+<p>The information you need is the short_name for a particular data collection, which can be found from the data collection’s landing page. For example, if you are interested in the gridded SSH products from the MEaSURES project, go to podaac.jpl.nasa.gov, search “MEaSUREs Gridded Sea Surface Height Anomalies”</p>
+</div>
+<div class="section" id="the-conventional-way-using-wget-and-curl">
+<h2>The conventional way using wget and curl<a class="headerlink" href="#the-conventional-way-using-wget-and-curl" title="Permalink to this heading"></a></h2>
+<p>This link points to <a class="reference external" href="https://github.com/podaac/tutorials/blob/master/notebooks/batch_download_podaac_data.md">Instructions for HTTPS download from the PO.DAAC and NASA Earthdata</a>.</p>
 </div>
 <div class="section" id="a-quick-look-at-the-data-through-soto-and-worldview">
 <h2>A quick look at the data through SOTO and Worldview<a class="headerlink" href="#a-quick-look-at-the-data-through-soto-and-worldview" title="Permalink to this heading"></a></h2>

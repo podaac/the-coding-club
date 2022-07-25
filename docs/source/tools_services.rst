@@ -5,14 +5,21 @@ Tools and services
    :maxdepth: 2
    :caption: Contents:
 
-The mighty podaac-data-subscriber
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The mighty podaac-data-subscriber - download data using one line
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Data lives in a server, which is called on-premise if it is in a cooled room at Pasadena several miles to our office at JPL but called **Cloud** if it is in one of the Amazon Web Service (AWS) facilities. The point is that basic data access should not be very different regardless where the data are hosted.
+The `podaac-data-subscriber <https://github.com/podaac/data-subscriber>`_ makes downloading the PODAAC data in the cloud super easy.
 
-The `podaac-data-subscriber <https://github.com/podaac/data-subscriber>`_ makes downloading the PODAAC data super easy.
+If your workflow involves downloading data to your local machine, the data-subscriber is the recommended tool to use. Its github page has a clear instruction on the installation and usage.
 
-If your workflow involves downloading data to your local machine, the data-subscriber is the recommended tool to use. The github page has clear instruction on installation and usage.
+The information you need is the short_name for a particular data collection, which can be found from the data collection's landing page. For example, if you are interested in the gridded SSH products from the MEaSURES project, go to podaac.jpl.nasa.gov, search "MEaSUREs Gridded Sea Surface Height Anomalies"
+
+
+
+The conventional way using wget and curl
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This link points to `Instructions for HTTPS download from the PO.DAAC and NASA Earthdata <https://github.com/podaac/tutorials/blob/master/notebooks/batch_download_podaac_data.md>`_.
 
 A quick look at the data through SOTO and Worldview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

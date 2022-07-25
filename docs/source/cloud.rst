@@ -67,6 +67,7 @@ This is one of the most-asked question. Where to start? Below is a list of ranke
 4. Budget cloud computing in your research proposals
     This is a long-term solution. Of course you need to write and win a proposal first. The cloud-computing can usually be included as a part of the IT support. Several thousands per year will be sufficient for prototyping. But the budget can easily become several hundred thousand for larger computation.
 
+5. NASA Supplement for Scientific Software Plaform: https://nspires.nasaprs.com/external/solicitations/summary!init.do?solId=%7B4FA619F1-A664-1A70-4470-7BC0581374DF%7D&path=open
 
 Cloud-based workflows
 ~~~~~~~~~~~~~~~~~~~~~~~~

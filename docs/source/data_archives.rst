@@ -13,12 +13,12 @@ NASA Earthdata, which includes PO.DAAC data, requires Earthdata Login (EDL) to a
 
 Once you have registered the EDL, make sure to generate the **.netrc** file in your home directory. Some podaac tools, such as podaac-data-subscriber, will automatically read your EDL credential from the .netrc file. The result is a lifesaver: you do not need to enter your username and password every time you try to download some data.
 
-Here is a well-written instruction from the `podaac-data-subscriber <https://github.com/podaac/data-subscriber>`_ github page: 
+Here is a well-written instruction from the `podaac-data-subscriber <https://github.com/podaac/data-subscriber>`_ github page:
 
-Step 1:  Get Earthdata Login     
+Step 1:  Get Earthdata Login
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This step is needed only if you dont have an Earthdata login already. 
+This step is needed only if you dont have an Earthdata login already.
 
 From https://urs.earthdata.nasa.gov/:
 
@@ -34,7 +34,7 @@ To find the location of your HOME directory
 
 On UNIX you can use
 
-.. code-block:: console 
+.. code-block:: console
 
     echo $HOME
 
@@ -77,6 +77,9 @@ Have you ever wondered for a complete list of all data collections hosted by POD
 
 * `This link points to a table of all PODAAC data collections in the cloud <https://podaac.jpl.nasa.gov/datasetlist?view=table&provider=POCLOUD>`_.
 
+* `This link points to a table of all PODAAC data in the cloud from Common Metadata Repository (CMR) <https://cmr.earthdata.nasa.gov/search/site/collections/directory/POCLOUD/gov.nasa.eosdis>`_
+
+
 NASA Earthdata search
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -98,5 +101,3 @@ If you have no interest of non-PODAAC data, https://podaac.jpl.nasa.gov/datasetl
 .. image:: media/podaacsearch.png
    :width: 700
    :alt: PODAAC search
-
-

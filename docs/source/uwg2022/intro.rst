@@ -8,12 +8,14 @@ Introduction
 Logistics
 ~~~~~~~~~~~~
 
-===========    ===================================================
-Location       * In-person: 303-450, JPL, Pasadena, California
-               * Online: Webex
-Time           August 4-5, 2022
-Hotel          `Westin Pasadena <https://www.marriott.com/en-us/hotels/laxpw-the-westin-pasadena/overview/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_Mjc4MjMxNS03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D>`_
-===========    ===================================================
+=============    ===================================================
+Location         * In-person: 303-450, JPL, Pasadena, California
+                 * Online: Webex
+Time             August 4-5, 2022
+Hotel            `Westin Pasadena <https://www.marriott.com/en-us/hotels/laxpw-the-westin-pasadena/overview/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_Mjc4MjMxNS03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D>`_
+Participants     `The list in google doc <https://docs.google.com/spreadsheets/d/1OY8-dNAdmpNGMTjD-C3X_jWHiMHc51-MfOHu5K4Viu8/edit#gid=1105633176>`_
+Registration     `Google Form <https://forms.gle/DFadHFKgAgouU8MSA>`_
+=============    ===================================================
 
 
 
@@ -56,3 +58,10 @@ Meetings and Communications
 * PO.DAAC will cover travel expenses for non-government employees
 * Materials and other information may be disseminated throughout the year.
 * UWG members are encouraged to reach out to the PO.DAAC Project Scientist at any point during their term with any findings, issues, or inquiries.
+
+PO.DAAC Interfaces
+~~~~~~~~~~~~~~~~~~~~
+
+.. image:: ../media/podaac_rela.png
+   :width: 700
+   :alt: PODAAC Interfaces

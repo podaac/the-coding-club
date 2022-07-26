@@ -13,10 +13,72 @@ NASA Earthdata, which includes PO.DAAC data, requires Earthdata Login (EDL) to a
 
 Once you have registered the EDL, make sure to generate the **.netrc** file in your home directory. Some podaac tools, such as podaac-data-subscriber, will automatically read your EDL credential from the .netrc file. The result is a lifesaver: you do not need to enter your username and password every time you try to download some data.
 
-Were you a hitchhiker to the Galaxy, **.netrc** is your towel. Spend some time, complete it, test it, set it once and for all. It is just a text file with two lines after all. It will save you from the frustration caused by constant popups of the out-of-nowhere error messages blocking you from getting to the data.
+Here is a well-written instruction from the `podaac-data-subscriber <https://github.com/podaac/data-subscriber>`_ github page:
 
-Find your data -- The search engines
+Step 1:  Get Earthdata Login
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This step is needed only if you dont have an Earthdata login already.
+
+From https://urs.earthdata.nasa.gov/:
+
+     *The Earthdata Login provides a single mechanism for user registration and profile  management for all EOSDIS system components (DAACs, Tools, Services). Your Earthdata login   also helps the EOSDIS program better understand the usage of EOSDIS services to improve  user experience through customization of tools and improvement of services. EOSDIS data are  openly available to all and free of charge except where governed by international  agreements.*
+
+For setting up your authentication, see the notes on the `netrc` file below.
+
+Step 2: Setup your Earthdata Login
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The netrc used within the script  will allow Python scripts to log into any Earthdata Login without being prompted for
+credentials every time you run. The netrc file should be placed in your HOME directory.
+To find the location of your HOME directory
+
+On UNIX you can use
+
+.. code-block:: console
+
+    echo $HOME
+
+On Windows you can use
+
+..  code-block:: console
+
+     echo %HOMEDRIVE%%HOMEPATH%
+
+The output location from the command above should be the location of the `.netrc` (`_netrc` on Windows) file.
+
+The format of the `netrc` file is as follows:
+
+.. code-block:: console
+
+     machine urs.earthdata.nasa.gov
+         login <your username>
+         password <your password>
+
+for example:
+
+.. code-block:: console
+
+     machine urs.earthdata.nasa.gov
+         login podaacUser
+         password podaacIsAwesome
+
+Were you a hitchhiker to the Galaxy, **.netrc** is your towel. Spend some time, complete it, test it, set it once and for all. It is just a text file with three lines after all. It will save you from the frustration caused by constant popups of the out-of-nowhere error messages blocking you from getting to the data.
+
+
+Find your data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A glance of All data collections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Have you ever wondered for a complete list of all data collections hosted by PODAAC? I have. When the total number is less than several hundred, a complete list can be very handy at times. Here they are.
+
+* `This link points to a table of all PODAAC data collections <https://podaac.jpl.nasa.gov/datasetlist?view=table>`_
+
+* `This link points to a table of all PODAAC data collections in the cloud <https://podaac.jpl.nasa.gov/datasetlist?view=table&provider=POCLOUD>`_.
+
+* `This link points to a table of all PODAAC data in the cloud from Common Metadata Repository (CMR) <https://cmr.earthdata.nasa.gov/search/site/collections/directory/POCLOUD/gov.nasa.eosdis>`_
+
 
 NASA Earthdata search
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -39,13 +101,3 @@ If you have no interest of non-PODAAC data, https://podaac.jpl.nasa.gov/datasetl
 .. image:: media/podaacsearch.png
    :width: 700
    :alt: PODAAC search
-
-
-A glance of All data collections
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Search engine can speed up our quest for certain dataset or granules, but have you ever wondered for a complete list of all data collections? I have. When the total number is less than several hundred, a complete list can be very handy at times. Here they are.
-
-* `This link points to a table of all PODAAC data collections <https://podaac.jpl.nasa.gov/datasetlist?view=table>`_
-
-* `This link points to a table of all PODAAC data collections in the cloud <https://podaac.jpl.nasa.gov/datasetlist?view=table&provider=POCLOUD>`_.

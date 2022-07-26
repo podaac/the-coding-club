@@ -23,10 +23,9 @@ This document is under development. You may find empty and/or incomplete section
    tools_services
    cloud
    providers
-   roses_proposal
-   faqs
    dia
    coding_club
+   faqs
    glossary
 
 

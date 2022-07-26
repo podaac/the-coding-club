@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PO.DAAC history &mdash; The Hitchhiker&#39;s Guide to PO.DAAC  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -54,7 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="providers.html">Data-providers’ resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roses_proposal.html">Write the Data Management Plan (DMP) for a PO ROSES proposal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faqs.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dia.html">Data in Action (DiA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dia.html">Data in Action (DiA) and animations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coding_club.html">The Coding Club</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 </ul>
@@ -83,35 +84,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="po-daac-history">
+  <section id="po-daac-history">
 <h1>PO.DAAC history<a class="headerlink" href="#po-daac-history" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="milestones">
+<section id="milestones">
 <h2>Milestones<a class="headerlink" href="#milestones" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="_images/podaac_history.png"><img alt="PODAAC history" src="_images/podaac_history.png" style="width: 700px;" /></a>
-</div>
-<div class="section" id="the-short-lived-seasat-the-cornerstone">
+</section>
+<section id="the-short-lived-seasat-the-cornerstone">
 <h2>The short-lived Seasat – the cornerstone<a class="headerlink" href="#the-short-lived-seasat-the-cornerstone" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="_images/seasat.jpg"><img alt="Seasat" src="_images/seasat.jpg" style="width: 100px;" /></a>
 <p>The origin of the PO.DAAC is historically traced to the short lived operation of the NASA Seasat mission launched in 1978.  The Seasat altimeter, one of several instruments on the Seasat platform, was among the first space based remote sensing instruments dedicated to large scale oceanographic measurements of sea level, but only survived for a few months. However, the measurements from this and the other instruments represented scientific breakthroughs for the period and made commensurate demands for data storage, access and distribution.</p>
-</div>
-<div class="section" id="the-pods-and-nods-from-tapes-to-cd-roms">
+</section>
+<section id="the-pods-and-nods-from-tapes-to-cd-roms">
 <h2>The PODS and NODS – from tapes to CD-ROMS<a class="headerlink" href="#the-pods-and-nods-from-tapes-to-cd-roms" title="Permalink to this heading"></a></h2>
 <p>The Pilot Ocean Data System (PODS), a distant precursor to PO.DAAC, was founded at JPL to meet these demands including implementing distribution (and subsetting!) of data from local hard disks for local users, and via time series plots and magnetic tapes for remote users. Later to meet the needs of more emerging oceanographic missions, and as the data infrastructure and management matured, PODS morphed into the NASA Ocean Data System (NODS). More robust data access included distribution via CD-ROMs in addition to tapes.</p>
-</div>
-<div class="section" id="the-beginning-of-po-daac-ftp-and-https">
+</section>
+<section id="the-beginning-of-po-daac-ftp-and-https">
 <h2>The beginning of PO.DAAC – FTP and HTTPS<a class="headerlink" href="#the-beginning-of-po-daac-ftp-and-https" title="Permalink to this heading"></a></h2>
 <p>Finally, in 1991 the PO.DAAC was established as the archive of record and distribution source for the successful TOPEX/Poseidon altimeter launched in 1992, and the instrument that has served as the foundation of the modern satellite observed sea level record. During this period, the PO.DAAC developed improved infrastructure to implement distribution via FTP, later HTTPS, and other online servers as part of the family of DAACs within the NASA EOSDIS program.  This included developing and deploying web services for data extraction, subsetting and visualization, and data discovery and search, and metadata services.</p>
-</div>
-<div class="section" id="the-need-of-cloud-by-swot-a-new-era">
+</section>
+<section id="the-need-of-cloud-by-swot-a-new-era">
 <h2>The need of Cloud by SWOT – a New Era<a class="headerlink" href="#the-need-of-cloud-by-swot-a-new-era" title="Permalink to this heading"></a></h2>
 <p>The Surface Water and Ocean Topography (SWOT) mission will use a high-resolution Ka-band Interferometer to measure the ocean sea surface topography and terrestrial waters. It will generate more than 20 Terabytes/day data flow. On-premise data management and distribution becomes less practical. A new strategy and data management was adopted that focuses on leveraging the extendable scale and flexibility of cloud storage and computing.  This was not only a PO.DAAC decision but the entire NASA Earth Science Data Systems program has made a technical and business decision to move its data derived from earth observing assets to the cloud to streamline the data management (ingest, archive, discovery, distribution) using open source software, improve management of distribution and storage costs, promote open science, analysis in place, and interdisciplinary science across the spectrum of its measurements, and reduce data movement (download).</p>
 <p>Cloud-based data management is relatively new to Earth science. Adapting to the new system can be disorienting. This guidebook aims to estabilish clear pathways to PO.DAAC data and tools.</p>
 <p>Further reading:</p>
 <p>Hausman, J., D. Moroni, M. Gangl, V. Zlotnicki, J. Vazquez-Cuervo, E. M. Armstrong, C. Oaida, M. Gierach, C. Finch, and C. Schroeder. 2019. The evolution of the PO.DAAC: Seasat to SWOT. Advances in Space Research, <a class="reference external" href="https://doi.org/10.1016/j.asr.2019.11.030">https://doi.org/10.1016/j.asr.2019.11.030</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,13 +1,15 @@
 # Class used to generate lists of S3 URIs.
 #
-# Author: nicole.tebaldi@jpl.nasa.gov
 # Date Created: 20221014
 
 # Standard imports
 from http.cookiejar import CookieJar
 import netrc
-import requests
+from socket import gethostname, gethostbyname
 from urllib import request
+
+# Third-party imports
+import requests
 
 class S3List:
     """Class used to query and download from PO.DAAC's CMR API.
@@ -98,3 +100,26 @@ class S3List:
         res = requests.get(url=url, params=params)        
         coll = res.json()
         return [url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"]
+
+    def login_and_run_query(self, short_name, provider, temporal_range):
+        """Log into CMR and run query to retrieve a list of S3 URLs."""
+
+        try:
+            # Login and retrieve token
+            self.login()
+            client_id = "podaac_cmr_client"
+            hostname = gethostname()
+            ip_addr = gethostbyname(hostname)
+            self.get_token(client_id, ip_addr)
+
+            # Run query
+            s3_urls = self.run_query(short_name, provider, temporal_range)
+            s3_urls.sort()
+
+            # Clean up and delete token
+            self.delete_token()            
+        except Exception:
+            raise
+        else:
+            # Return list
+            return s3_urls

@@ -10,8 +10,10 @@ from urllib import request
 
 # Third-party imports
 import requests
+import json
+from pathlib import Path
 
-class S3List:
+class CMRQuery:
     """Class used to query and download from PO.DAAC's CMR API.
     """
 
@@ -84,11 +86,95 @@ class S3List:
         except Exception as e:
             raise Exception(f"Failed to delete token: {e}.")
 
-    def run_query(self, shortname, provider, temporal_range):
+
+    def query_collections_by_keyword(self, provider, keywords, processinglevel=''):
+        """Run query on collection referenced by keywords."""
+
+        url = f"https://{self.CMR}/search/collections.umm_json"
+        if processinglevel == '':
+            params = {
+                    "cloud_hosted": "True",
+                    "provider" : provider, 
+                    "has_granules": "True",
+                    "token" : self._token,
+                    "scroll" : "true",
+                    "page_size" : 2000,
+                }
+        else:
+            params = {
+                    "cloud_hosted": "True",
+                    "provider" : provider, 
+                    "processing_level": processinglevel,
+                    "has_granules": "True",
+                    "token" : self._token,
+                    "scroll" : "true",
+                    "page_size" : 2000,
+                }
+        
+        shortnames = []
+
+        response = requests.get(url=url, params=params)   
+
+        json_file = Path('/Users/vmcdonal/s3_lists').joinpath("s3_list.json")
+        print(f"Saving list as JSON file: {str(json_file)}")
+        with open(json_file, 'w') as jf:
+            json.dump(response.json(), jf, indent=2) 
+
+        collections = response.json()['items']
+
+        for coll in collections:
+
+            title="%s %s"%(coll["umm"]["ShortName"],coll["umm"]["EntryTitle"])
+
+            match = 1
+
+            for kw in keywords:
+                match *= kw.lower() in title.lower()
+
+                if match == 1:
+
+                    # if it's the first collection, write it out
+                    if shortnames == []:
+                        shortnames.append(coll["umm"]["ShortName"])
+                
+                    # otherwise check if the collection has already been added based on a previous keyword, if so skip
+                    elif coll["umm"]["ShortName"] in shortnames:
+                        continue
+                    
+                    # if it hasn't been added yet then add to the list
+                    else:
+                        shortnames.append(coll["umm"]["ShortName"])
+
+        return shortnames
+    
+    
+    def query_granules_by_shortname(self, shortnames, provider, temporal_range):
         """Run query on collection referenced by shortname from provider."""
 
+        granule_urls = []
+
         url = f"https://{self.CMR}/search/granules.umm_json"
-        params = {
+        
+        # if just one shortname provided
+        if isinstance(shortnames, str):
+            params = {
+                    "provider" : provider, 
+                    "ShortName" : shortnames, 
+                    "token" : self._token,
+                    "scroll" : "true",
+                    "page_size" : 2000,
+                    "sort_key" : "start_date",
+                    "temporal" : temporal_range
+                }
+
+            res = requests.get(url=url, params=params)        
+            coll = res.json()
+        
+            granule_urls.append([url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"])
+        
+        else:
+            for shortname in shortnames:
+                params = {
                     "provider" : provider, 
                     "ShortName" : shortname, 
                     "token" : self._token,
@@ -97,9 +183,14 @@ class S3List:
                     "sort_key" : "start_date",
                     "temporal" : temporal_range
                 }
-        res = requests.get(url=url, params=params)        
-        coll = res.json()
-        return [url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"]
+
+                res = requests.get(url=url, params=params)        
+                coll = res.json()
+        
+                granule_urls.append([url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"])
+        
+        return granule_urls
+
 
     def login_and_run_query(self, short_name, provider, temporal_range):
         """Log into CMR and run query to retrieve a list of S3 URLs."""
@@ -113,7 +204,7 @@ class S3List:
             self.get_token(client_id, ip_addr)
 
             # Run query
-            s3_urls = self.run_query(short_name, provider, temporal_range)
+            s3_urls = self.query_granule_by_shortname(short_name, provider, temporal_range)
             s3_urls.sort()
 
             # Clean up and delete token

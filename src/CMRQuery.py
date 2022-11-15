@@ -113,13 +113,7 @@ class CMRQuery:
         
         shortnames = []
 
-        response = requests.get(url=url, params=params)   
-
-        json_file = Path('/Users/vmcdonal/s3_lists').joinpath("s3_list.json")
-        print(f"Saving list as JSON file: {str(json_file)}")
-        with open(json_file, 'w') as jf:
-            json.dump(response.json(), jf, indent=2) 
-
+        response = requests.get(url=url, params=params)    
         collections = response.json()['items']
 
         for coll in collections:
@@ -173,6 +167,7 @@ class CMRQuery:
             granule_urls.append([url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"])
         
         else:
+            tmp_grans = []
             for shortname in shortnames:
                 params = {
                     "provider" : provider, 
@@ -187,8 +182,13 @@ class CMRQuery:
                 res = requests.get(url=url, params=params)        
                 coll = res.json()
         
-                granule_urls.append([url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"])
+                tmp_grans.append([url["URL"] for res in coll["items"] for url in res["umm"]["RelatedUrls"] if url["Type"] == "GET DATA VIA DIRECT ACCESS"])
         
+            # remove nesting for multiple collections
+            for l in tmp_grans:
+                for g in l:
+                    granule_urls.append(g)
+
         return granule_urls
 
 
@@ -214,3 +214,18 @@ class CMRQuery:
         else:
             # Return list
             return s3_urls
+
+    def login_and_set_token(self):
+        try:
+            self.login()
+            self.login()
+            client_id = "podaac_cmr_client"
+            hostname = gethostname()
+            ip_addr = gethostbyname(hostname)
+            self.get_token(client_id, ip_addr)
+
+        except Exception:
+            raise
+        
+        else:
+            return

@@ -18,7 +18,7 @@ import json
 from pathlib import Path
 
 # Local imports
-from S3List import S3List
+from CMRQuery import CMRQuery
 
 def create_args():
     """Create and return argparser with arguments."""
@@ -59,7 +59,7 @@ def generate_lists(short_name, provider, temporal_range, list_dir):
 
     start = datetime.now()
 
-    s3list = S3List()
+    s3list = CMRQuery()
 
     try:
         print("Login, run query, and retrieve list of S3 URIs.")

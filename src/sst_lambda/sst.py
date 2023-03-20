@@ -1,15 +1,59 @@
 import requests
+import base64
 import s3fs
+import boto3
+import botocore
+import json
 import xarray as xr
 import numpy as np
 # import h5netcdf # don't actually need to import but must be installed
 
+
+# Handle EDL login & S3 credentials
 s3_cred_endpoint = {
     'podaac':'https://archive.podaac.earthdata.nasa.gov/s3credentials'
 }
 
+def get_creds(s3_endpoint, edl_username, edl_password):
+        """Request and return temporary S3 credentials.
+        
+        Taken from: https://archive.podaac.earthdata.nasa.gov/s3credentialsREADME
+        """
+        
+        login = requests.get(
+            s3_endpoint, allow_redirects=False
+        )
+        login.raise_for_status()
+
+        auth = f"{edl_username}:{edl_password}"
+        encoded_auth  = base64.b64encode(auth.encode('ascii'))
+
+        auth_redirect = requests.post(
+            login.headers['location'],
+            data = {"credentials": encoded_auth},
+            headers= { "Origin": s3_endpoint },
+            allow_redirects=False
+        )
+        auth_redirect.raise_for_status()
+        final = requests.get(auth_redirect.headers['location'], allow_redirects=False)
+        results = requests.get(s3_endpoint, cookies={'accessToken': final.cookies['accessToken']})
+        results.raise_for_status()
+        return json.loads(results.content)       
+        
+
 def get_temp_creds(provider):
-    return requests.get(s3_cred_endpoint[provider]).json()
+    # retreive EDL credentials from AWS Parameter Store
+    try:
+        ssm_client = boto3.client('ssm', region_name="us-west-2")
+        edl_username = ssm_client.get_parameter(Name="edl_username", WithDecryption=True)["Parameter"]["Value"]
+        edl_password = ssm_client.get_parameter(Name="edl_password", WithDecryption=True)["Parameter"]["Value"]
+    except botocore.exceptions.ClientError as error:
+        raise error
+
+    # use EDL creds to get AWS S3 Access Keys & Tokens
+    s3_creds = get_creds(s3_cred_endpoint, edl_username, edl_password)
+    
+    return s3_creds
 
 temp_creds_req = get_temp_creds('podaac')
 
@@ -19,6 +63,8 @@ s3_client = s3fs.S3FileSystem(
         secret=temp_creds_req['secretAccessKey'], 
         token=temp_creds_req['sessionToken']
     )
+
+# Science functions & lambda handler
 
 def regrid(data_in, resolution=2):
     """
@@ -39,6 +85,7 @@ def regrid(data_in, resolution=2):
     
     return data_in.interp(lat=np.arange(-90,90,resolution)).interp(lon=np.arange(-180,180,resolution))
     
+
 def lambda_handler(event, context):
     
     key = event["s3_key"]
@@ -65,4 +112,3 @@ def lambda_handler(event, context):
     # s3_file_obj_new = s3_client.put(tmp_file_path, result_bucket)
     
     print(ds_results)
-

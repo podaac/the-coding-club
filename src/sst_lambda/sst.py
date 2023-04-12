@@ -1,3 +1,4 @@
+# Imports
 import requests
 import base64
 import s3fs
@@ -9,11 +10,12 @@ import numpy as np
 # import h5netcdf # don't actually need to import but must be installed
 
 
-# Handle EDL login & S3 credentials
-s3_cred_endpoint = {
+# Constants
+S3_ENDPOINT_DICT = {
     'podaac':'https://archive.podaac.earthdata.nasa.gov/s3credentials'
 }
 
+# Handle EDL login & S3 credentials
 def get_creds(s3_endpoint, edl_username, edl_password):
         """Request and return temporary S3 credentials.
         
@@ -40,32 +42,24 @@ def get_creds(s3_endpoint, edl_username, edl_password):
         results.raise_for_status()
         return json.loads(results.content)       
         
-
-def get_temp_creds(provider):
+def get_temp_creds(prefix):
     # retreive EDL credentials from AWS Parameter Store
     try:
         ssm_client = boto3.client('ssm', region_name="us-west-2")
-        edl_username = ssm_client.get_parameter(Name="edl_username", WithDecryption=True)["Parameter"]["Value"]
-        edl_password = ssm_client.get_parameter(Name="edl_password", WithDecryption=True)["Parameter"]["Value"]
+        edl_username = ssm_client.get_parameter(Name=f"{prefix}-sst-edl-username", WithDecryption=True)["Parameter"]["Value"]
+        edl_password = ssm_client.get_parameter(Name=f"{prefix}-sst-edl-password", WithDecryption=True)["Parameter"]["Value"]
+        print("Retrieved Earthdata login credentials.")
     except botocore.exceptions.ClientError as error:
         raise error
 
     # use EDL creds to get AWS S3 Access Keys & Tokens
-    s3_creds = get_creds(s3_cred_endpoint, edl_username, edl_password)
+    s3_creds = get_creds(S3_ENDPOINT_DICT[prefix], edl_username, edl_password)
+    print("Retrieved temporary S3 access credentials.")
     
     return s3_creds
 
-temp_creds_req = get_temp_creds('podaac')
-
-s3_client = s3fs.S3FileSystem(
-        anon=False, 
-        key=temp_creds_req['accessKeyId'], 
-        secret=temp_creds_req['secretAccessKey'], 
-        token=temp_creds_req['sessionToken']
-    )
 
 # Science functions & lambda handler
-
 def regrid(data_in, resolution=2):
     """
     Resample the global SST data specified in data_in
@@ -87,10 +81,20 @@ def regrid(data_in, resolution=2):
     
 
 def lambda_handler(event, context):
+    """Lambda event handler to orchestrate regridding of granule."""
     
-    key = event["s3_key"]
+    # Load direct access S3 credentials
+    prefix = event["prefix"]
+    temp_creds_req = get_temp_creds(prefix)
+    s3_client = s3fs.S3FileSystem(
+        anon=False, 
+        key=temp_creds_req['accessKeyId'], 
+        secret=temp_creds_req['secretAccessKey'], 
+        token=temp_creds_req['sessionToken']
+    )
 
     # open the granule as an s3 obj
+    key = event["s3_key"]   # Granule name
     s3_file_obj = s3_client.open(key, mode='rb')
         
     # open in in xarray
@@ -110,5 +114,9 @@ def lambda_handler(event, context):
     
     # send back to the s3 bucket
     # s3_file_obj_new = s3_client.put(tmp_file_path, result_bucket)
+    
+    # Close dataset and S3 file object
+    ds.close()
+    s3_file_obj.close()
     
     print(ds_results)

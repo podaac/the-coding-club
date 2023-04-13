@@ -20,6 +20,16 @@ variable "ecr_repo" {
   description = "sst-lambda container image repository name"
 }
 
+variable "edl_password" {
+  type        = string
+  description = "Earthdata Login password"
+}
+
+variable "edl_username" {
+  type        = string
+  description = "Earthdata Login useranme"
+}
+
 variable "lambda_role" {
   type        = string
   description = "Name of AWS Lambda IAM role"

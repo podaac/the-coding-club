@@ -60,31 +60,49 @@ def get_temp_creds(prefix):
 
 
 # Science functions & lambda handler
-def regrid(data_in, resolution=2):
+def sst_global_mean(data_in):
     """
-    Resample the global SST data specified in data_in
+    Calculate the area-weighted sea surface temperature (sst) global mean
 
     Parameters
     ==========
-    data_in: ndarray xarray with dimension (lat, lon)
-             Sea surface temperature
-    resolution: scalar
-             the output resolution, default at 1-degree
+    data_in: xarray.Dataset()
+            the input dataset
 
+    var_name: string
+            the variable to calculate the global mean on
+             
     Return
     ======
     data_out: ndarray, xarray
-             the resmapled SST at the specified resolution
+             the global mean for the provided variable
     """
     
-    return data_in.interp(lat=np.arange(-90,90,resolution)).interp(lon=np.arange(-180,180,resolution))
+    # select the sst variable and select single time
+    data_var = data_in.analysed_sst.isel(time=0)
+
+    # convert to degrees Celcius
+    data_var = data_var - 273.15
+
+    # create the weights
+    weights = np.cos(np.deg2rad(data_var.lat))
+
+    # apply weights to data
+    data_weighted = data_var.weighted(weights)
+
+    # calculate the global mean on the weighted data
+    global_mean = data_weighted.mean()
+
+    return global_mean
     
 
 def lambda_handler(event, context):
-    """Lambda event handler to orchestrate regridding of granule."""
+    """Lambda event handler to orchestrate calculation of global mean."""
     
     # Load direct access S3 credentials
     prefix = event["prefix"]
+    key = event["s3_key"]   # Granule name
+
     temp_creds_req = get_temp_creds(prefix)
     s3_client = s3fs.S3FileSystem(
         anon=False, 
@@ -94,29 +112,27 @@ def lambda_handler(event, context):
     )
 
     # open the granule as an s3 obj
-    key = event["s3_key"]   # Granule name
     s3_file_obj = s3_client.open(key, mode='rb')
         
     # open in in xarray
     ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')
-        
+
     # process the function
-    ds_results = regrid(ds)
+    ds_results = sst_global_mean(ds)
         
     # create the temp path to write results to
-    tmp_file_path = '/tmp/' + key[-3] + '_regrid.nc'
+    tmp_file_path = '/tmp/' + key[-3] + '_mean.nc'
         
     # write the results to a new netcdf file
     ds_results.to_netcdf(tmp_file_path, mode='w')
     
-    # put the results back in the same bucket
-    # result_bucket = 's3://' + bucket + key
+    # specify user bucket to write results
+    result_bucket = 's3://podaac-sst/' + key
     
-    # send back to the s3 bucket
-    # s3_file_obj_new = s3_client.put(tmp_file_path, result_bucket)
+    # write to s3 bucket
+    s3_file_obj_new = s3_client.put(tmp_file_path, result_bucket)
     
     # Close dataset and S3 file object
     ds.close()
     s3_file_obj.close()
-    
-    print(ds_results)
+    s3_file_obj_new.close()

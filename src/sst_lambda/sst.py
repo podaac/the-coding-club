@@ -99,10 +99,17 @@ def sst_global_mean(data_in):
 def lambda_handler(event, context):
     """Lambda event handler to orchestrate calculation of global mean."""
     
-    # Load direct access S3 credentials
+    # unpack payload
     prefix = event["prefix"]
-    key = event["s3_key"]   # Granule name
+    #key = event["s3_key"]   # Granule name
 
+    granule_path = event["input_granule_s3path"]
+
+    bucket, key = granule_path.replace("s3://", "").split("/", 1)
+
+    output_s3_bucket = event["output_granule_s3bucket"]
+
+    # Load direct access S3 credentials
     temp_creds_req = get_temp_creds(prefix)
     s3_client = s3fs.S3FileSystem(
         anon=False, 
@@ -112,7 +119,7 @@ def lambda_handler(event, context):
     )
 
     # open the granule as an s3 obj
-    s3_file_obj = s3_client.open(key, mode='rb')
+    s3_file_obj = s3_client.open(granule_path, mode='rb')
         
     # open in in xarray
     ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')
@@ -126,11 +133,9 @@ def lambda_handler(event, context):
     # write the results to a new netcdf file
     ds_results.to_netcdf(tmp_file_path, mode='w')
     
-    # specify user bucket to write results
-    result_bucket = 's3://podaac-sst/' + key
     
     # write to s3 bucket
-    s3_file_obj_new = s3_client.put(tmp_file_path, result_bucket)
+    s3_file_obj_new = s3_client.put(tmp_file_path, output_s3_bucket)
     
     # Close dataset and S3 file object
     ds.close()

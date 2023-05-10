@@ -1,6 +1,7 @@
 # Imports
 import requests
 import base64
+from datetime import date
 import s3fs
 import boto3
 import botocore
@@ -93,7 +94,14 @@ def sst_global_mean(data_in):
     # calculate the global mean on the weighted data
     global_mean = data_weighted.mean()
 
-    return global_mean
+    sst_out = global_mean.expand_dims(time=data_in.time)
+    sst_out = sst_out.assign_attrs({
+    "description": "Area-weighted global mean sea surface temperature calculated using AWS Lambda",
+    "units": "celcius",
+    "date_created": date.today().strftime("%b-%d-%Y")
+    })
+
+    return sst_out
     
 
 def lambda_handler(event, context):
@@ -106,8 +114,8 @@ def lambda_handler(event, context):
     prefix = event["prefix"]
     #key = event["s3_key"]   # Granule name
 
-    granule_path = event["input_granule_s3path"]
-    bucket, key = granule_path.replace("s3://", "").split("/", 1)
+    input_granule_path = event["input_granule_s3path"]
+    input_bucket, folder, input_key = input_granule_path.replace("s3://", "").split("/", 2)
 
     # get the name of the user's output S3 bucket
     output_s3_bucket = event["output_granule_s3bucket"]
@@ -128,7 +136,7 @@ def lambda_handler(event, context):
     )
 
     # open the granule as an s3 obj
-    s3_file_obj = s3_client_in.open(granule_path, mode='rb')
+    s3_file_obj = s3_client_in.open(input_granule_path, mode='rb')
 
     # -----------------------------------
     # Do science calculations on the data
@@ -144,22 +152,23 @@ def lambda_handler(event, context):
     # Write results to the user's own S3 bucket for further analysis
     # --------------------------------------------------------------
 
+    output_key = input_key[:-3] + '_mean.nc'
+
     # create the temp path for Lambda to write results to locally
-    tmp_file_path = '/tmp/' + key[-3] + '_mean.nc'
+    tmp_file_path = '/tmp/' + output_key
         
     # write the results to a new netcdf file
-    ds_results.to_netcdf(tmp_file_path, mode='w')
+    try:
+        ds_results.to_netcdf(tmp_file_path, mode='w')
+
+    except Exception as e:
+         print("Problem writing to tmp: " + e)
     
-    # Set up S3 client for user output bucket. 
-    # Assumes the IAM role the Lambda function runs as has read/write permission to the bucket
-    s3_client_out = s3fs.S3FileSystem(
-        anon=False 
-    )
-    
-    # upload the resulting file to s3 bucket
-    s3_file_obj_new = s3_client_out.put(tmp_file_path, output_s3_bucket)
-    
+    # Set up S3 client for user output bucket.  
+    s3_out = boto3.client('s3')
+
+    s3_out.upload_file(tmp_file_path, output_s3_bucket, output_key)
+
     # Close dataset and S3 file objects
     ds.close()
-    s3_file_obj.close()
-    s3_file_obj_new.close()
+

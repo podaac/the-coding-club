@@ -99,19 +99,28 @@ def sst_global_mean(data_in):
 def lambda_handler(event, context):
     """Lambda event handler to orchestrate calculation of global mean."""
     
-    # unpack payload
+    # --------------------
+    # Unpack event payload
+    # --------------------
+
     prefix = event["prefix"]
     #key = event["s3_key"]   # Granule name
 
     granule_path = event["input_granule_s3path"]
-
     bucket, key = granule_path.replace("s3://", "").split("/", 1)
 
+    # get the name of the user's output S3 bucket
     output_s3_bucket = event["output_granule_s3bucket"]
 
-    # Load direct access S3 credentials
+    # ---------------------------------------------
+    # Read data from Earthdata S3 buckets using EDL
+    # ---------------------------------------------
+
+    # Get EDL credentials from AWS Parameter Store
     temp_creds_req = get_temp_creds(prefix)
-    s3_client = s3fs.S3FileSystem(
+
+    # Set up S3 client for Earthdata buckets using EDL creds
+    s3_client_in = s3fs.S3FileSystem(
         anon=False, 
         key=temp_creds_req['accessKeyId'], 
         secret=temp_creds_req['secretAccessKey'], 
@@ -119,25 +128,38 @@ def lambda_handler(event, context):
     )
 
     # open the granule as an s3 obj
-    s3_file_obj = s3_client.open(granule_path, mode='rb')
+    s3_file_obj = s3_client_in.open(granule_path, mode='rb')
+
+    # -----------------------------------
+    # Do science calculations on the data
+    # -----------------------------------
         
-    # open in in xarray
+    # open data in xarray
     ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')
 
     # process the function
     ds_results = sst_global_mean(ds)
-        
-    # create the temp path to write results to
+    
+    # --------------------------------------------------------------
+    # Write results to the user's own S3 bucket for further analysis
+    # --------------------------------------------------------------
+
+    # create the temp path for Lambda to write results to locally
     tmp_file_path = '/tmp/' + key[-3] + '_mean.nc'
         
     # write the results to a new netcdf file
     ds_results.to_netcdf(tmp_file_path, mode='w')
     
+    # Set up S3 client for user output bucket. 
+    # Assumes the IAM role the Lambda function runs as has read/write permission to the bucket
+    s3_client_out = s3fs.S3FileSystem(
+        anon=False 
+    )
     
-    # write to s3 bucket
-    s3_file_obj_new = s3_client.put(tmp_file_path, output_s3_bucket)
+    # upload the resulting file to s3 bucket
+    s3_file_obj_new = s3_client_out.put(tmp_file_path, output_s3_bucket)
     
-    # Close dataset and S3 file object
+    # Close dataset and S3 file objects
     ds.close()
     s3_file_obj.close()
     s3_file_obj_new.close()

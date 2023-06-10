@@ -8,8 +8,6 @@ import botocore
 import json
 import xarray as xr
 import numpy as np
-# import h5netcdf # don't actually need to import but must be installed
-
 
 # Constants
 S3_ENDPOINT_DICT = {
@@ -87,6 +85,10 @@ def sst_global_mean(data_in):
 
     # create the weights
     weights = np.cos(np.deg2rad(data_var.lat))
+    for lat in data_var.lat:
+        l = lat.values
+        if (l>60) or (l<-60):
+            weights.loc[dict(lat=l)] = 0
 
     # apply weights to data
     data_weighted = data_var.weighted(weights)

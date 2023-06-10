@@ -4,7 +4,7 @@ resource "aws_lambda_function" "aws_lambda_error_handler" {
   function_name = "${var.prefix}-sst"
   role          = data.aws_iam_role.lambda_execution_role.arn
   package_type  = "Image"
-  memory_size   = 256
+  memory_size   = 6144
   timeout       = 900
 }
 

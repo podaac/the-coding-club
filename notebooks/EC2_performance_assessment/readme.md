@@ -4,10 +4,9 @@ This directory contains notebooks, scripts, and key results from an anaylsis to 
 **Background**
 
 The ability to perform scientific analyses on increasingly large data sets (comprised of either large data files, many data files, or both) is a key target of computing in the cloud, since the necessary computing resources can be utilized by anyone. In AWS, EC2 instances characteristics relevant to parallel computing include:
-* Number of vCPUs
 * Number of CPU cores
-* Memory per vCPU (perhaps more relevant than total memory, for parallel computing)
-* Threads per core
+* Threads (or vCPUs) per core
+* Memory per vCPU (perhaps more relevant than total memory, for parallel computing?)
 
 The goal of this analysis is to assess performance and cost differences between EC2 instances which vary these characteristics.
 

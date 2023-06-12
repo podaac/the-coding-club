@@ -20,5 +20,8 @@ The computation is a downscaling of a MUR 1 km SST data product (https://doi.org
 
 **Further Resources**
 
-AWS discussion of CPU options: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html
-Table of EC2 instance characteristics available [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cpu-options-supported-instances-values.html).
+*AWS EC2 instance characteristics:*
+* [Tables for memory, bandwith, vCPU count](https://aws.amazon.com/ec2/instance-types/)
+* [Tables for CPU cores and threads per core](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cpu-options-supported-instances-values.html)
+* [AWS discussion of CPU options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html)
+

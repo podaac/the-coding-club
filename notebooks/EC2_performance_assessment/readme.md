@@ -7,11 +7,14 @@ The ability to perform scientific analyses on increasingly large data sets (comp
 * Number of CPU cores
 * Memory per vCPU (perhaps more relevant than total memory, for parallel computing)
 * Threads per core
-
-Table of EC2 instance characteristics available [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cpu-options-supported-instances-values.html).
+The goal of this analysis is to assess performance and cost differences between EC2 instances which vary these characteristics.
 
 **Computation and Dataset**
 The computation is a downscaling of a MUR 1 km SST data product (https://doi.org/10.5067/GHGMR-4FJ04) to 100 km resolution.
 
 ![example_figure](./example_downscaling.png)
 **Figure 1. Example results of downscaling a MUR 1 km SST product**
+
+**Further Resources**
+AWS discussion of CPU options: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html
+Table of EC2 instance characteristics available [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cpu-options-supported-instances-values.html).

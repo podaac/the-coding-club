@@ -17,6 +17,15 @@ The computation is a downscaling of a MUR 1 km SST data product (https://doi.org
 ![example_figure](./example_downscaling.png)
 **Figure 1. Example results of downscaling a MUR 1 km SST product**
 
+**Directory contents**
+`dscale_s3_dask.ipynb` walks through downscaling 10 MUR 1 km files via S3 connection, comparing computation times with and without dask. In summary, it takes half the time to downscale the files when using two dask workers, as expected.
+
+`dscale_s3_dask.py` generalizes the code in `dscale_s3_dask.ipynb` to make it easier to plug and play on any EC2 instance. It has a callable function to set parallel computing parameters and number of files analyzed, saving the downscaled files to `./sst_downscaled`. Example usage:
+```
+import dscale_s2_dask as dscale
+dscale.downscale_with_parallel(n_workers=24, threads_per_worker=2, n_files=100) # n_files is the number of files to process.
+```
+
 **Further Resources**
 
 *AWS EC2 instance characteristics:*

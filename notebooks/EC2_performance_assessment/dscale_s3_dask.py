@@ -13,6 +13,7 @@ where the <Earthdata username> and <Earthdata password> are your login credentia
 import gc
 import os
 import time
+import subprocess
 
 import s3fs
 import requests
@@ -133,10 +134,16 @@ def downscale_with_parallel(n_workers, threads_per_worker, n_files):
 
 
     # Save computation time results
-    fname_results = 'computation_results_'+str(round(time.time()))+'.csv'
+        # first get EC2 instance type to store in the results
+    cmd = "ec2-metadata | grep 'instance-type'"
+    o = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    ec2type = o.stdout[15:-1]
+
+    #fname_results = 'computation_results_'+str(round(time.time()))+'.csv'
+    fname_results = 'computation_results_'+ec2type+'_'+str(round(time.time()))+'.csv'
     with open(fname_results, 'a') as f:
-        f.write('n_workers,threads_per_worker,n_files,compute_time_seconds'+'\n')
-        f.write(str(n_workers)+','+str(threads_per_worker)+','+str(n_files)+','+comptime+'\n')
+        f.write('n_workers,threads_per_worker,n_files,compute_time_seconds,ec2_type'+'\n')
+        f.write(str(n_workers)+','+str(threads_per_worker)+','+str(n_files)+','+comptime+','+ec2type+'\n')
     
 
 

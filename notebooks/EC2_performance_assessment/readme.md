@@ -1,4 +1,7 @@
 # Performance/Cost Assessment of EC2 Types Using Dask
+
+**Author**: Dean Henze
+
 This directory contains notebooks, scripts, and key results from an anaylsis to compare the performance of several AWS EC2 instance types utilizing Dask parallel computing to perform an earth science-relevant computation.
 
 **Background**

@@ -9,14 +9,17 @@ Tersely, parallel computing is a method which:
 
 Dask is a Python package which will let your code utilize parallel processing in your .py and .ipynb files. 
 
-A slightly more comprehensive introduction to these concepts can be found elsewhere, e.g. [this page on Pythia](https://earth-env-data-science.github.io/lectures/dask/intro.html)
+A great further introduction to these concepts can be found on [this page](https://earth-env-data-science.github.io/lectures/dask/intro.html)
 
 ## Prerequisites
-* **Basic knowledge of what the Cloud is**, and accessing NASA Earthdata on the Cloud. If not, checkout the [NASA Earthdata Cloud Cookbook](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/).
+* Basic knowledge of what the Cloud is and **accessing NASA Earthdata on the Cloud**. If not, checkout the [NASA Earthdata Cloud Cookbook](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/).
+* Read these two brief pages on
+  1. [Dask intro](https://earth-env-data-science.github.io/lectures/dask/intro.html)
+  2. [Basic computations with Dask](https://earth-env-data-science.github.io/lectures/dask/dask_arrays.html)
 * **Some Python coding experience**. Basic familiarity is required, but more experience will make working with Dask easier. Many key packages for scientific analysis (e.g. Xarray, NumPy) work with Dask only if the proper syntax is used, which will likely be familiar to those who have already worked with them. However, don't let this stop you from jumping in!
 * **Ability to start a virtual machine (VM) in AWS. All notebooks here assume that you are in a VM in AWS, and will not work unless you are**. E.g. you can spin up your own EC2 instance, use a Cloud Playground service, or try out [Coiled](https://www.coiled.io) (very useful, but does charge a fee).
 
 ## Other Resources
-* Pythia
+* [Pythia](https://projectpythia.org) Comprehensive and pedagogical overview to key concepts in Python Coding for analyzing Earth datasets.
 * Pangeo
-* Dask docs
+* [Dask website and documentation](https://www.dask.org)

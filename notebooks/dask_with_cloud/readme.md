@@ -9,3 +9,4 @@ Included here are a collection of notebooks which demonstrate Dask (Python packa
 ## Other Resources
 * Pythia
 * Pangeo
+* Dask docs

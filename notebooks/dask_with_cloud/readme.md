@@ -13,7 +13,7 @@ A great further introduction to these concepts can be found on the second bullet
 
 ## Prerequisites
 * Basic knowledge of what the Cloud is and **accessing NASA Earthdata on the Cloud**. If not, checkout the [NASA Earthdata Cloud Cookbook](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/).
-* If not already familiary with Dask and Parallel computing, read these two brief pages on
+* If not familiar with Dask and Parallel computing, read these two brief pages on
   1. [Dask intro](https://earth-env-data-science.github.io/lectures/dask/intro.html)
   2. [Basic computations with Dask](https://earth-env-data-science.github.io/lectures/dask/dask_arrays.html)
 * **Some Python coding experience**. Basic familiarity is required, but more experience will make working with Dask easier. Many key packages for scientific analysis (e.g. Xarray, NumPy) work with Dask only if the proper syntax is used, which will likely be familiar to those who have already worked with them. However, don't let this stop you from jumping in!

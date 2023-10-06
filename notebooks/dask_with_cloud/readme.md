@@ -23,3 +23,8 @@ A great further introduction to these concepts can be found on the second bullet
 * [Pythia](https://projectpythia.org) Comprehensive and pedagogical overview to key concepts in Python Coding for analyzing Earth datasets. Great resource if any of the concepts covered in these notebooks are unfamiliar. It is an educational working group for Pangeo.
 * [Pangeo](https://pangeo.io) Compunity platform for big data geoscience
 * [Dask website and documentation](https://www.dask.org)
+
+## Notebooks
+* [basic_dask.ipynb](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/basic_dask.ipynb). Simple introduction (or refresher) to accessing NASA Earthdata in the cloud with Xarray and basic processing with and without Dask.
+* [aggregation_functions.ipynb](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/aggregation_functions.ipynb). Covers parallel methods to subset data and apply aggregation functions (e.g. mean, std) to 0.01 degree resolution, global sea surface temperature data (using Xarray and Dask). Provides an example: comparing mean time series and spatial maps of SST in sub-regions of the mid-latitude eastern Pacific and sub-tropical western Atlantic oceans.
+* [general_parallelization.ipynb](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/general_parallelization.ipynb). Demonstrates how to use Dask to parallelize an arbitrary function (e.g. one you've written yourself). Provides an example: coarsening (downscaling) MUR 1 km SST data from 0.01 degree to 1 degree resolution. Then, presents a summary of a cost-performance analysis performed by running the code in the notebook on several categories of AWS EC2 instances.

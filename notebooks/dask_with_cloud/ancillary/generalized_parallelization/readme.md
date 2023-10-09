@@ -1,8 +1,10 @@
-# Performance/Cost Assessment of EC2 Types Using Dask
+# Ancillary notebooks, scripts, and results for general_parallelization.ipynb
 
 **Author**: Dean Henze
 
-This directory contains notebooks, scripts, and key results from an anaylsis to compare the performance of several AWS EC2 instance types utilizing Dask parallel computing to perform an earth science-relevant computation.
+This directory contains ancillary notebooks, scripts, and results for the general_parallelization.ipynb notebook. This primarily includes an anaylsis to compare the performance of several AWS EC2 instance types running the code from the notebook.
+
+## Performance/Cost Assessment of EC2 Types Using Dask
 
 **Background**
 
@@ -15,10 +17,9 @@ The goal of this analysis is to assess performance and cost differences between 
 
 **Computation and Dataset**
 
-The computation is a downscaling of a MUR 1 km SST data product (https://doi.org/10.5067/GHGMR-4FJ04) to 100 km resolution.
+The computation is a coarsening of the MUR SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution, an example shown below.
 
 ![example_figure](./example_downscaling.png)
-**Figure 1. Example results of downscaling a MUR 1 km SST product**
 
 **Directory contents**
 

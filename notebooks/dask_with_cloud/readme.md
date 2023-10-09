@@ -1,6 +1,6 @@
 # Dask for Parallelized Analysis of NASA Earthdata in the Cloud
 
-<img src="aws-logo.png" alt="drawing" width="140" height="110"/> <img src="python-logo-only.png" alt="drawing" width="80" height="95"/>
+<img src="aws-logo.png" alt="drawing" width="140" height="110"/> <img src="python-logo-only.png" alt="drawing" width="80" height="95"/> <img src="Dask Logo_icon-on-pink.png" alt="drawing" width="80" height="95"/>
 
 Included here are a collection of notebooks which demonstrate Dask (Python package) for parallel computing in the cloud using AWS resources and Earth data hosted by NASA. They are meant to be both pedagogical and serve as a quick reference/refresher, but do assume some prerequisite knowledge. Included in this readme is a short introduction to parallel computing and Dask, prerequisites you should have to understand the notebooks, and a [short description of each notebook](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/readme.md#notebooks).
 

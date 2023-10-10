@@ -6,13 +6,19 @@ This directory contains ancillary notebooks, scripts, and results for the `gener
 
 ## Performance/Cost Assessment of EC2 Types Using Dask
 
-**Background for the EC2 performance/cost assessment using Dask**
+**Background**
 
 The computation in `general_parallelization.ipynb` coarsens a MUR SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution. An example is shown in the below figure. The notebook presents a toy example of processing 10 files but the goal ultimately is to process 100, 1000, 10,000 files. For these larger number of files, computation time and cost become more consequential. The goal of this small assessment is to compare computation times and costs of several EC2 instance types, in order to provide guidance to users in their own computations. 
 
+![example_figure](./example_downscaling.png)
+
+**Analysis**
+
 AWS offers hundreds of EC2 instance types, which vary in aspects such as number of processors (vCPU's), memory per processor, and processor type. AWS groups these EC2 types into several general use cases such as "general-purpose", "compute-optimized", "memory-optimized", and "accelerated-computing" (while all of these classes have instances of comparable processor numbers, the classes differ in memory per processor and processor type). For this analysis, an EC2 instance was taken from each of these use-cases: a small instance from the "general purpose" case as a control, and larger instances from the other three case types. The code from `general_parallelization.ipynb` was adapted to an exectuable .py script and run on the EC2 instances for 10, 100, and 1000 files. Computation times are output by the .py script, and costs are derived using computation times and AWS Linux on-demand pricing per hour (pricing table included here).   
 
-![example_figure](./example_downscaling.png)
+**Results**
+
+![results_figure1](./downscale_computation_times.jpg)
 
 **Directory contents**
 

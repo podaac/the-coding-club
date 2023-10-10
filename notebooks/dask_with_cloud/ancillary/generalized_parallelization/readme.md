@@ -20,6 +20,8 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 
 ![results_figure1](./downscale_computation_times.jpg)
 
+![results_figure2](./aws-costs_downscale-comp.jpg)
+
 **Directory contents**
 
 `dscale_s3_dask.ipynb` walks through downscaling 10 MUR 1 km files via S3 connection, comparing computation times with and without dask. In summary, it takes half the time to downscale the files when using two dask workers, as expected.

@@ -2,11 +2,11 @@
 
 **Author**: Dean Henze
 
-This directory contains ancillary notebooks, scripts, and results for the `general_parallelization.ipynb` notebook. This primarily includes an analysis to compare the performance of several AWS EC2 instance types running the code from the notebook.
+This directory contains ancillary notebooks, scripts, and results for the `general_parallelization.ipynb` notebook. This primarily includes an analysis to compare the performance of several AWS EC2 instance types running the code from the notebook. The following sections provide an overview of this analysis and its results. A [description of the files in this directory]((https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/readme.md#directory-contents) are given further below.
 
 ## Performance/Cost Assessment of EC2 Types Using Dask
 
-**Background**
+### Background
 
 The computation in `general_parallelization.ipynb` coarsens a MUR SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution. An example is shown in the below figure. The notebook presents a toy example of processing 10 files but the goal ultimately is to process 100, 1000, 10,000 files. For these larger number of files, computation time and cost become more consequential. The goal of this small assessment is to compare computation times and costs of several EC2 instance types, in order to provide guidance to users in their own computations. 
 

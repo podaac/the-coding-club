@@ -35,7 +35,7 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 import dscale_s3_dask as dscale
 dscale.downscale_with_parallel(n_workers=24, threads_per_worker=2, n_files=100) # n_files is the number of files to process.
 ```
-Where `n_workers` and `threads_per_worker` are passed to an instance of Dask's `Client()`, and `n_files` is the number of MUR files to downscale. Downscaled files are saved to the directory `./sst_downscaled`, and computation timing results are saved to a file "computation_results_<ec2type>_<runtime>.csv", where <ec2type> is the instance type, and <runtime> is the timestamp when `dscale_mur.py` was run.
+Where `n_workers` and `threads_per_worker` are passed to an instance of Dask's `Client()`, and `n_files` is the number of MUR files to downscale. Downscaled files are saved to the directory `./sst_downscaled`, and computation timing results are saved to a file "computation_results_<ec2type>_<runtime>.csv", where \<ec2type\> is the instance type, and \<runtime\> is the timestamp when `dscale_mur.py` was run.
 
 ## Other Resources
 

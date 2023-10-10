@@ -14,13 +14,15 @@ The computation in `general_parallelization.ipynb` coarsens a MUR SST data produ
 
 **Analysis**
 
-AWS offers hundreds of EC2 instance types, which vary in aspects such as number of processors (vCPU's), memory per processor, and processor type. AWS groups these EC2 types into several general use cases such as "general-purpose", "compute-optimized", "memory-optimized", and "accelerated-computing" (while all of these classes have instances of comparable processor numbers, the classes differ in memory per processor and processor type). For this analysis, an EC2 instance was taken from each of these use-cases: a small instance from the "general purpose" case as a control, and larger instances from the other three case types. The code from `general_parallelization.ipynb` was adapted to an exectuable .py script and run on the EC2 instances for 10, 100, and 1000 files. Computation times are output by the .py script, and costs are derived using computation times and AWS Linux on-demand pricing per hour (pricing table included here).   
+AWS offers hundreds of EC2 instance types, which vary in aspects such as number of processors (vCPU's), memory per processor, and processor type. AWS groups these EC2 types into several general use cases such as "general-purpose", "compute-optimized", "memory-optimized", and "accelerated-computing" (while all of these classes have instances of comparable processor numbers, the classes differ in memory per processor and processor type). For this analysis, an EC2 instance was taken from each of these use-cases: a small instance from the "general purpose" case as a control, and larger instances from the other three case types. The code from `general_parallelization.ipynb` was adapted to an exectuable .py script and run on the EC2 instances for 10, 100, and 1000 files. Computation times are output by the .py script, and costs are derived using computation times and AWS Linux on-demand pricing per hour (pricing table included here). Guidance on running the .py script are given in the Directory contents section.   
 
 **Results**
 
 ![results_figure1](./downscale_computation_times.jpg)
 
 ![results_figure2](./aws-costs_downscale-comp.jpg)
+
+* In a test comparing two EC2 instances that were identical other than bandwidth, the computation time did not seem to be affected by larger bandwidth. 
 
 **Directory contents**
 
@@ -31,13 +33,6 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 import dscale_s3_dask as dscale
 dscale.downscale_with_parallel(n_workers=24, threads_per_worker=2, n_files=100) # n_files is the number of files to process.
 ```
-
-**Preliminary Results**
-
-* Main factor in decreasing time for this computation is the product number_of_workers x threads_per_worker. 
-* Although the same computation time results from using 24 workers with 2 threads each vs. 48 workers with 1 thread each (above bullet), the former does not produce any memory warnings.
-* In a test comparing two EC2 instances that were identical other than bandwidth, the computation time did not seem to be affected by larger bandwidth. 
- 
 
 **Further Resources**
 

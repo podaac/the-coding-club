@@ -28,7 +28,7 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 * The accelerated-computing instance performed the slowest despite costing the most per hour. This demonstrated that these instance types do not necessarily perform the best "out of the package" for an arbitrary task, and require more technical knowledge to utilize.
 * Two memory-optimized instances were tested, which were identical other than bandwidth. For these, the computation time did not seem to be affected by larger bandwidth. 
 
-**Directory contents**
+## Directory Contents
 
 `dscale_s3_dask.ipynb` walks through downscaling 10 MUR 1 km files via S3 connection, comparing computation times with and without dask. In summary, it takes half the time to downscale the files when using two dask workers, as expected.
 
@@ -38,7 +38,7 @@ import dscale_s3_dask as dscale
 dscale.downscale_with_parallel(n_workers=24, threads_per_worker=2, n_files=100) # n_files is the number of files to process.
 ```
 
-**Further Resources**
+## Other Resources
 
 *AWS EC2 instance characteristics:*
 * [Tables for memory, bandwith, vCPU count](https://aws.amazon.com/ec2/instance-types/)

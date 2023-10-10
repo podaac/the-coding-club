@@ -2,7 +2,7 @@
 
 **Author**: Dean Henze
 
-This directory contains ancillary notebooks, scripts, and results for the `general_parallelization.ipynb` notebook. This primarily includes an analysis to compare the performance of several AWS EC2 instance types running the code from the notebook. The following sections provide an overview of this analysis and its results. A [description of the files in this directory]((https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/readme.md#directory-contents) are given further below.
+This directory contains ancillary notebooks, scripts, and results for the `general_parallelization.ipynb` notebook. This primarily includes an analysis to compare the performance of several AWS EC2 instance types running the code from the notebook. The following sections provide an overview of this analysis and its results. A [description of the files in this directory](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/readme.md#directory-contents) are given further below.
 
 ## Performance/Cost Assessment of EC2 Types Using Dask
 
@@ -12,18 +12,18 @@ The computation in `general_parallelization.ipynb` coarsens a MUR SST data produ
 
 ![example_figure](./example_downscaling.png)
 
-**Analysis**
+### Analysis
 
 AWS offers hundreds of EC2 instance types, which vary in aspects such as number of processors (vCPU's), memory per processor, and processor type. AWS groups these EC2 types into several general use cases such as "general-purpose", "compute-optimized", "memory-optimized", and "accelerated-computing" (while all of these classes have instances of comparable processor numbers, the classes differ in memory per processor and processor type). For this analysis, an EC2 instance was taken from each of these use-cases: a small instance from the "general purpose" case as a control, and larger instances from the other three case types. The code from `general_parallelization.ipynb` was adapted to an exectuable .py script and run on the EC2 instances for 10, 100, and 1000 files. Computation times are output by the .py script, and costs are derived using computation times and AWS Linux on-demand pricing per hour (pricing table included here). Guidance on running the .py script are given in the [Directory Contents](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/readme.md#directory-contents) section.   
 
-**Results**
+### Results
 
 ![results_figure1](./downscale_computation_times.jpg)
 
 ![results_figure2](./aws-costs_downscale-comp.jpg)
 
-* Computation times for all larger instances reduced computation time of 1000 files from ~8 hrs to ~20 minutes over the small, "general-purpose" control instance.
-* It was found that for our computation, each worker (e.g. processor, or vCPU) required at least ~6 GB of memory. This limited the maximuim number of processors that could be asked for from each type.
+* Computation times for larger instances reduced computation time of 1000 files from ~8 hrs to ~20 minutes over the small general-purpose instance used as a control.
+* It was found that for our computation, each worker (e.g. processor, vCPU) required at least ~6 GB of memory. This limited the maximuim number of vCPUs that could be instantiated, depending on the memory per vCPU of the instance.
 * The memory-optimized instances performed the best both in terms of cost and performance. The compute-optimized performed almost as well, and the fact a fewer number of processors could be run (due to lower memory per processor), suggested that these might be better if our computation required less memory per processor.
 * The accelerated-computing instance performed the slowest despite costing the most per hour. This demonstrated that these instance types do not necessarily perform the best "out of the package" for an arbitrary task, and require more technical knowledge to utilize.
 * Two memory-optimized instances were tested, which were identical other than bandwidth. For these, the computation time did not seem to be affected by larger bandwidth. 

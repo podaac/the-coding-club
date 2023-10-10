@@ -22,7 +22,11 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 
 ![results_figure2](./aws-costs_downscale-comp.jpg)
 
-* In a test comparing two EC2 instances that were identical other than bandwidth, the computation time did not seem to be affected by larger bandwidth. 
+* Computation times for all larger instances reduced computation time of 1000 files from ~8 hrs to ~20 minutes over the small, "general-purpose" control instance.
+* It was found that for our computation, each worker (e.g. processor, or vCPU) required at least ~6 GB of memory. This limited the maximuim number of processors that could be asked for from each type.
+* The memory-optimized instances performed the best both in terms of cost and performance. The compute-optimized performed almost as well, and the fact a fewer number of processors could be run (due to lower memory per processor), suggested that these might be better if our computation required less memory per processor.
+* The accelerated-computing instance performed the slowest despite costing the most per hour. This demonstrated that these instance types do not necessarily perform the best "out of the package" for an arbitrary task, and require more technical knowledge to utilize.
+* Two memory-optimized instances were tested, which were identical other than bandwidth. For these, the computation time did not seem to be affected by larger bandwidth. 
 
 **Directory contents**
 

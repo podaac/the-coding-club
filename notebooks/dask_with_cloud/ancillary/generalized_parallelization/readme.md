@@ -30,16 +30,16 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 
 ## Directory Contents
 
-* `dscale_mur.py` wraps the code from `generalized_parallelization.ipynb` into a script which can be run on an EC2 instance. Example usage:
+* [dscale_mur.py](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/dscale_mur.py) wraps the code from `generalized_parallelization.ipynb` into a script which can be run on an EC2 instance. Example usage:
 ```
 import dscale_s3_dask as dscale
 dscale.downscale_with_parallel(n_workers=24, threads_per_worker=2, n_files=100) # n_files is the number of files to process.
 ```
 Where `n_workers` and `threads_per_worker` are passed to an instance of Dask's `Client()`, and `n_files` is the number of MUR files to downscale. Downscaled files are saved to the directory "./sst_downscaled", and computation timing results are saved to a file "computation_results_\<ec2type\>_\<runtime\>.csv", where \<ec2type\> is the instance type, and \<runtime\> is the timestamp when `dscale_mur.py` was run.
-* `dscale_computation_results_all.csv` contains computation timing results from `dscale_mur.py` used in the analysis presented above, combined into a single file.
-* `combine_all_results.ipynb` can be used as a template for combining timing output files from multiple runs of `dscale_mur.py` (e.g. if you wish to create your own version of `dscale_computation_results_all.csv`).
-* `Amazon_EC2_On-Demand_Pricing.csv` contains EC2 pricing taken from an AWS webpage in summer 2023 (originally hosted [here](https://aws.amazon.com/ec2/pricing/on-demand/)).
-* `plot_all_results.ipynb` takes data from `dscale_computation_results_all.csv` and `Amazon_EC2_On-Demand_Pricing.csv` to generate the figures in the Results section above. Figures are saved as "downscale_computation_times.jpg" and "aws-costs_downscale-comp.jpg".
+* [dscale_computation_results_all.csv](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/dscale_computation_results_all.csv) contains computation timing results from `dscale_mur.py` used in the analysis presented above, combined into a single file.
+* [combine_all_results.ipynb](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/combine_all_results.ipynb) can be used as a template for combining timing output files from multiple runs of `dscale_mur.py` (e.g. if you wish to create your own version of `dscale_computation_results_all.csv`).
+* [Amazon_EC2_On-Demand_Pricing.csv](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/Amazon_EC2_On-Demand_Pricing.csv) contains EC2 pricing taken from an AWS webpage in summer 2023 (originally hosted [here](https://aws.amazon.com/ec2/pricing/on-demand/)).
+* [plot_all_results.ipynb](https://github.com/podaac/the-coding-club/blob/main/notebooks/dask_with_cloud/ancillary/generalized_parallelization/plot_all_results.ipynb) takes data from `dscale_computation_results_all.csv` and `Amazon_EC2_On-Demand_Pricing.csv` to generate the figures in the Results section above. Figures are saved as "downscale_computation_times.jpg" and "aws-costs_downscale-comp.jpg".
 
 ## Other Resources
 

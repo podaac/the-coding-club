@@ -1,23 +1,16 @@
-# Ancillary notebooks, scripts, and results for general_parallelization.ipynb
+# Ancillary notebooks, scripts, and results for `general_parallelization.ipynb`
 
 **Author**: Dean Henze
 
-This directory contains ancillary notebooks, scripts, and results for the general_parallelization.ipynb notebook. This primarily includes an anaylsis to compare the performance of several AWS EC2 instance types running the code from the notebook.
+This directory contains ancillary notebooks, scripts, and results for the `general_parallelization.ipynb` notebook. This primarily includes an analysis to compare the performance of several AWS EC2 instance types running the code from the notebook.
 
 ## Performance/Cost Assessment of EC2 Types Using Dask
 
-**Background**
+**Background for the EC2 performance/cost assessment using Dask**
 
-The ability to perform scientific analyses on increasingly large data sets (comprised of either large data files, many data files, or both) is a key target of computing in the cloud, since the necessary computing resources can be utilized by anyone. In AWS, EC2 instances characteristics relevant to parallel computing include:
-* Number of CPU cores
-* Threads (or vCPUs) per core
-* Memory per vCPU (perhaps more relevant than total memory, for parallel computing?)
+The computation in `general_parallelization.ipynb` coarsens a MUR SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution. An example is shown in the below figure. The notebook presents a toy example of processing 10 files but the goal ultimately is to process 100, 1000, 10,000 files. For these larger number of files, computation time and cost become more consequential. The goal of this small assessment is to compare computation times and costs of several EC2 instance types, in order to provide guidance to users in their own computations. 
 
-The goal of this analysis is to assess performance and cost differences between EC2 instances which vary these characteristics.
-
-**Computation and Dataset**
-
-The computation is a coarsening of the MUR SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution, an example shown below.
+AWS offers hundreds of EC2 instance types, which vary in aspects such as number of processors (vCPU's), memory per processor, and processor type. AWS groups these EC2 types into several general use cases such as "general-purpose", "compute-optimized", "memory-optimized", and "accelerated-computing" (while all of these classes have instances of comparable processor numbers, the classes differ in memory per processor and processor type). For this analysis, an EC2 instance was taken from each of these use-cases: a small instance from the "general purpose" case as a control, and larger instances from the other three case types. The code from `general_parallelization.ipynb` was adapted to an exectuable .py script and run on the EC2 instances for 10, 100, and 1000 files. Computation times are output by the .py script, and costs are derived using computation times and AWS Linux on-demand pricing per hour (pricing table included here).   
 
 ![example_figure](./example_downscaling.png)
 

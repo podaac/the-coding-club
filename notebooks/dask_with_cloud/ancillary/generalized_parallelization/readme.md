@@ -8,7 +8,7 @@ This directory contains ancillary notebooks, scripts, and results for the `gener
 
 ### Background
 
-The computation in `general_parallelization.ipynb` coarsens a MUR SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution. An example is shown in the below figure. The notebook presents a toy example of processing 10 files but the goal ultimately is to process 100, 1000, 10,000 files. For these larger number of files, computation time and cost become more consequential. The goal of this small assessment is to compare computation times and costs of several EC2 instance types, in order to provide guidance to users in their own computations. 
+The computation in `general_parallelization.ipynb` coarsens the MUR (Multiscale Ultrahigh Resolution) SST data product (https://doi.org/10.5067/GHGMR-4FJ04) from 0.01 degree to 1 degree resolution. An example is shown in the below figure. The notebook presents a toy example of processing 10 files but the goal ultimately is to process 100, 1000, 10,000 files. For these larger number of files, computation time and cost become more consequential. The goal of this small assessment is to compare computation times and costs of several EC2 instance types, in order to provide guidance to users in their own computations. 
 
 ![example_figure](./example_downscaling.png)
 
@@ -30,13 +30,12 @@ AWS offers hundreds of EC2 instance types, which vary in aspects such as number 
 
 ## Directory Contents
 
-`dscale_s3_dask.ipynb` walks through downscaling 10 MUR 1 km files via S3 connection, comparing computation times with and without dask. In summary, it takes half the time to downscale the files when using two dask workers, as expected.
-
-`dscale_s3_dask.py` generalizes the code in `dscale_s3_dask.ipynb` to make it easier to plug and play on any EC2 instance. It has a callable function to set parallel computing parameters and number of files analyzed, saving the downscaled files to `./sst_downscaled`. Example usage:
+* `dscale_mur.py` wraps the code from `generalized_parallelization.ipynb` into a script which can be run on an EC2 instance. Example usage:
 ```
 import dscale_s3_dask as dscale
 dscale.downscale_with_parallel(n_workers=24, threads_per_worker=2, n_files=100) # n_files is the number of files to process.
 ```
+Where `n_workers` and `threads_per_worker` are passed to an instance of Dask's `Client()`, and `n_files` is the number of MUR files to downscale. Downscaled files are saved to the directory `./sst_downscaled`, and computation timing results are saved to a file "computation_results_<ec2type>_<runtime>.csv", where <ec2type> is the instance type, and <runtime> is the timestamp when `dscale_mur.py` was run.
 
 ## Other Resources
 

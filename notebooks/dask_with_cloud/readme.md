@@ -11,7 +11,7 @@ Tersely, parallel computing is a method which:
 
 Dask is a Python package which will let your code utilize parallel processing. It does require a slight modification to the way in which e.g. NumPy is used (and also forces you to not take shortcuts in learning proper syntax for Xarray).
 
-A great further introduction to these concepts can be found on the second bullet of the Prerequisites section below.
+A great further introduction to these concepts can be found in the Prerequisites section below.
 
 ## Prerequisites
 * Basic knowledge of what the Cloud is and **accessing NASA Earthdata on the Cloud**. If not, checkout the [NASA Earthdata Cloud Cookbook](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/).

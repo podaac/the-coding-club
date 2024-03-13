@@ -1,0 +1,25 @@
+,File Type,Num Granules,Size (MB),Writing Time (s),Loading 5 Times (s),Loading 10 Times (s),Average Loading Time (s),Matplotlib (s),Hvplot (s),Loading + Matplotlib (s),Loading + Hvplot (s),Environment
+0,NetCDF,23,272,52,9.34,29.8,2.609333333,11.5,3.09,13.4,5.23,Local
+1,Zarr,23,373,23,0.261,0.238,0.033266667,12,1.6,12,1.63,Local
+2,Individual Kerchunk,23,1.79,32,7.46,26,2.230666667,11.7,5.15,13.8,7.22,Local
+3,Combined Kerchunk,23,0.348,7,0.272,0.567,0.055933333,,5.38,,5.39,Local
+4,NetCDF,119,1390,265,47.8,75,8.186666667,194,13.1,203,22,Local
+5,Zarr,119,1880,129,0.11,0.515,0.041666667,134,12.7,134,12.8,Local
+6,Individual Kerchunk,119,10,124,64,81,9.666666667,96,15.7,103,23,Local
+7,Combined Kerchunk,119,0.484,38,0.327,0.818,0.076333333,,16.1,,16.3,Local
+8,NetCDF,589,6440,1399,301,654,63.66666667,668,401,716,449,Local
+9,Zarr,589,8710,1483,0.121,0.246,0.024466667,473,109,473,109,Local
+10,Individual Kerchunk,589,46,315,212,631,56.2,792,166,851,225,Local
+11,Combined Kerchunk,589,1.49,244,0.591,1.15,0.116066667,,138,,138,Local
+12,NetCDF,23,276,,94,129,14.86666667,,200,,272,Cloud
+13,Zarr,23,370,124,1.62,2.73,0.29,,15.5,,16.5,Cloud
+14,Individual Kerchunk,23,2,248,48,93,9.4,,9.12,,15.7,Cloud
+15,Combined Kerchunk,23,0.347,248,0.976,1.78,0.183733333,,22.8,,23.5,Cloud
+16,NetCDF,119,1400,,560,866,95.06666667,,,,,Cloud
+17,Zarr,119,1900,,1.41,3.43,0.322666667,,,,,Cloud
+18,Individual Kerchunk,119,9.2,,583,1049,108.8,,,,,Cloud
+19,Combined Kerchunk,119,1.5,,1.36,1.91,0.218,,,,,Cloud
+20,NetCDF,589,6400,,,,,,,,,Cloud
+21,Zarr,589,8600,,0.985,4.46,0.363,,,,,Cloud
+22,Individual Kerchunk,589,45.4,,,,,,,,,Cloud
+23,Combined Kerchunk,589,7.2,,1.26,2.61,0.258,,,,,Cloud

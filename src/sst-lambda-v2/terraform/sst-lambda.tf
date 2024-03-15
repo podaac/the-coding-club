@@ -1,6 +1,15 @@
 # AWS Lambda function
-resource "aws_lambda_function" "aws_lambda_sst_one_explode" {
-  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo_one.repository_url}:latest"
+resource "aws_lambda_function" "aws_lambda_error_handler" {
+  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo.repository_url}:latest"
+  function_name = "${var.prefix}-sst"
+  role          = data.aws_iam_role.lambda_execution_role.arn
+  package_type  = "Image"
+  memory_size   = 6144
+  timeout       = 900
+}
+
+resource "aws_lambda_function" "aws_lambda_error_handler" {
+  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo.repository_url}:latest"
   function_name = "${var.prefix}-sst-one"
   role          = data.aws_iam_role.lambda_execution_role.arn
   package_type  = "Image"
@@ -8,8 +17,8 @@ resource "aws_lambda_function" "aws_lambda_sst_one_explode" {
   timeout       = 900
 }
 
-resource "aws_lambda_function" "aws_lambda_sst_two_stats" {
-  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo_two.repository_url}:latest"
+resource "aws_lambda_function" "aws_lambda_error_handler" {
+  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo.repository_url}:latest"
   function_name = "${var.prefix}-sst-two"
   role          = data.aws_iam_role.lambda_execution_role.arn
   package_type  = "Image"
@@ -17,8 +26,8 @@ resource "aws_lambda_function" "aws_lambda_sst_two_stats" {
   timeout       = 900
 }
 
-resource "aws_lambda_function" "aws_lambda_sst_three_grid" {
-  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo_three.repository_url}:latest"
+resource "aws_lambda_function" "aws_lambda_error_handler" {
+  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo.repository_url}:latest"
   function_name = "${var.prefix}-sst-three"
   role          = data.aws_iam_role.lambda_execution_role.arn
   package_type  = "Image"

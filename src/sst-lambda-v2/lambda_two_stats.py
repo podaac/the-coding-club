@@ -72,15 +72,11 @@ def lambda_handler_statistics(event, context):
     # create the temp path for Lambda to write results to locally
     tmp_file_path = '/tmp/' + output_key
 
-    if not os.path.exists(tmp_file_path):
-        print('creating directory: ' + '/tmp/result_statistics/')
-        os.mkdir('/tmp/' + str(pid) + '/')
-
     # write the results to a parquet file
     try:
-        output.to_parquet(tmp_file_path)
+        output.to_parquet(tmp_file_path, mode='w')
     except Exception as e:
-        print("Problem writing to tmp: " + str(e))
+        print("Problem writing to tmp: " + e)
 
     s3.upload_file(tmp_file_path, output_s3_bucket, output_key)
 

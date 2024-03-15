@@ -15,9 +15,19 @@ variable "default_tags" {
   default = {}
 }
 
-variable "ecr_repo" {
+variable "ecr_repo_one" {
   type        = string
-  description = "sst-lambda container image repository name"
+  description = "sst-lambda-explode container image repository name"
+}
+
+variable "ecr_repo_two" {
+  type        = string
+  description = "sst-lambda-stats container image repository name"
+}
+
+variable "ecr_repo_three" {
+  type        = string
+  description = "sst-lambda-grid container image repository name"
 }
 
 variable "edl_password" {

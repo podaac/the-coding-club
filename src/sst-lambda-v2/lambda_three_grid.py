@@ -64,28 +64,36 @@ def lambda_handler_aggregate_grid(event, context):
         len(pd.unique(data_onto_full_grid['lats'])),
         len(pd.unique(data_onto_full_grid['lons']))
         )
-    sum_xr = xr.DataArray(sum_2d, coords=[('lat', out_lat), ('lon', out_lon)])
+    sum_xr = xr.DataArray(
+        sum_2d,
+        coords=[('lat', out_lat), ('lon', out_lon)])
     sum_xr = sum_xr.rename("sum")
 
     mean_2d = data_onto_full_grid['mean'].values.reshape(
         len(pd.unique(data_onto_full_grid['lats'])),
         len(pd.unique(data_onto_full_grid['lons']))
         )
-    mean_xr = xr.DataArray(mean_2d, coords=[('lat', out_lat), ('lon', out_lon)])
+    mean_xr = xr.DataArray(
+        mean_2d,
+        coords=[('lat', out_lat), ('lon', out_lon)])
     mean_xr = mean_xr.rename("mean")
 
     var_2d = data_onto_full_grid['variance'].values.reshape(
         len(pd.unique(data_onto_full_grid['lats'])),
         len(pd.unique(data_onto_full_grid['lons']))
         )
-    var_xr = xr.DataArray(var_2d, coords=[('lat', out_lat), ('lon', out_lon)])
+    var_xr = xr.DataArray(
+        var_2d,
+        coords=[('lat', out_lat), ('lon', out_lon)])
     var_xr = var_xr.rename("var")
 
     std_2d = data_onto_full_grid['standard_dev'].values.reshape(
         len(pd.unique(data_onto_full_grid['lats'])),
         len(pd.unique(data_onto_full_grid['lons']))
         )
-    std_xr = xr.DataArray(std_2d, coords=[('lat', out_lat), ('lon', out_lon)])
+    std_xr = xr.DataArray(
+        std_2d,
+        coords=[('lat', out_lat), ('lon', out_lon)])
     std_xr = sum_xr.rename("std")
 
     ds = xr.Dataset(
@@ -104,9 +112,9 @@ def lambda_handler_aggregate_grid(event, context):
 
     # write the results to a parquet file
     try:
-        ds.to_netcdf(tmp_file_path, mode='w')
+        ds.to_netcdf(tmp_file_path)
     except Exception as e:
-        print("Problem writing to tmp: " + e)
+        print("Problem writing to tmp: " + str(e))
 
     s3.upload_file(tmp_file_path, output_s3_bucket, output_key)
 

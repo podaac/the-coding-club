@@ -1,6 +1,7 @@
 ecr_repo_one     = "podaac-sst-one"
 ecr_repo_two     = "podaac-sst-two"
 ecr_repo_three   = "podaac-sst-three"
+ecr_repo_four    = "podaac-sst-four"
 edl_password = ""
 edl_username = ""
 lambda_role  = "podaac-sst-lambda-role"

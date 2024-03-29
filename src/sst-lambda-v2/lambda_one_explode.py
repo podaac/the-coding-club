@@ -1,7 +1,7 @@
 """
 """
-import os
 import json
+import logging
 import base64
 import requests
 import s3fs
@@ -154,6 +154,7 @@ def lambda_handler_explode(event, context):
     prefix = event["prefix"]
 
     input_granule_path = event["input_granule_s3path"]
+    collection_name = event["collection_name"]
 
     # get the name of the user's output S3 bucket
     output_s3_bucket = event["output_granule_s3bucket"]
@@ -176,8 +177,8 @@ def lambda_handler_explode(event, context):
     # open the granule as an s3 obj
     s3_file_obj = s3_client_in.open(input_granule_path, mode='rb')
 
-    # Set up S3 client for user output bucket.  
-    s3_out = boto3.client('s3')
+    # Set up lambda client to write out
+    lambda_client = boto3.client('lambda')
 
     # ------------------------------------------------
     # Explode the nc file to parquet geographic points
@@ -188,28 +189,22 @@ def lambda_handler_explode(event, context):
 
     sst_df = convert_to_dataframe(ds)
 
-    for i in range(sst_df.shape[0]):
-        row = sst_df[i:i+1]
+    BATCH_SIZE = 500
 
-        pid = row['point_id'][i]
-        ptime = row['time'][i]
+    for i in range(0, sst_df.shape[0], BATCH_SIZE):
+        chunk = sst_df[i: i + BATCH_SIZE]
+        print('Processing chunk ' + str(i))
+        print(chunk)
 
-        output_key = str(pid) + '/' + str(ptime) + '.parquet'
+        lambda_two_event = (
+            '{"input_rows":' + chunk.to_json()
+            + ',"output_granule_s3bucket":"' + output_s3_bucket
+            + '","collection_name":"' + collection_name + '"}')
 
-        # create the temp path for Lambda to write results to locally
-        tmp_file_path = '/tmp/' + output_key
+        print("Next lambda event payload: %s", lambda_two_event)
 
-        if not os.path.exists(tmp_file_path):
-            print('creating directory: ' + '/tmp/' + str(pid) + '/')
-            os.mkdir('/tmp/' + str(pid) + '/')
-
-        # write the results to a parquet file
-        try:
-            row.to_parquet(tmp_file_path)
-        except Exception as e:
-            print("Problem writing to tmp: " + str(e))
-
-        s3_out.upload_file(tmp_file_path, output_s3_bucket, output_key)
-
-        if os.path.exists(tmp_file_path):
-            os.remove(tmp_file_path)
+        lambda_client.invoke(
+            FunctionName='podaac-sst-two',
+            InvocationType='Event',
+            Payload=lambda_two_event
+        )

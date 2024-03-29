@@ -8,7 +8,7 @@ resource "aws_lambda_function" "aws_lambda_sst_one_explode" {
   timeout       = 900
 }
 
-resource "aws_lambda_function" "aws_lambda_sst_two_stats" {
+resource "aws_lambda_function" "aws_lambda_sst_two_write" {
   image_uri     = "${data.aws_ecr_repository.podaac_sst_repo_two.repository_url}:latest"
   function_name = "${var.prefix}-sst-two"
   role          = data.aws_iam_role.lambda_execution_role.arn
@@ -17,13 +17,30 @@ resource "aws_lambda_function" "aws_lambda_sst_two_stats" {
   timeout       = 900
 }
 
-resource "aws_lambda_function" "aws_lambda_sst_three_grid" {
+resource "aws_lambda_function" "aws_lambda_sst_three_stats" {
   image_uri     = "${data.aws_ecr_repository.podaac_sst_repo_three.repository_url}:latest"
   function_name = "${var.prefix}-sst-three"
   role          = data.aws_iam_role.lambda_execution_role.arn
   package_type  = "Image"
   memory_size   = 6144
   timeout       = 900
+}
+
+resource "aws_lambda_function" "aws_lambda_sst_four_grid" {
+  image_uri     = "${data.aws_ecr_repository.podaac_sst_repo_four.repository_url}:latest"
+  function_name = "${var.prefix}-sst-four"
+  role          = data.aws_iam_role.lambda_execution_role.arn
+  package_type  = "Image"
+  memory_size   = 6144
+  timeout       = 900
+}
+
+resource "aws_lambda_permission" "allow_lambda" {
+  statement_id  = "AllowExecutionFromLambda"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.aws_lambda_sst_two_write.function_name
+  principal     = "s3.amazonaws.com"
+  source_arn = aws_lambda_function.aws_lambda_sst_one_explode.arn
 }
 
 # SSM Parameter Store EDL Credentials

@@ -31,6 +31,10 @@ data "aws_ecr_repository" "podaac_sst_repo_three" {
   name = var.ecr_repo_three
 }
 
+data "aws_ecr_repository" "podaac_sst_repo_four" {
+  name = var.ecr_repo_four
+}
+
 data "aws_iam_role" "lambda_execution_role" {
   name = var.lambda_role
 }

@@ -15,4 +15,4 @@ COPY . ${LAMBDA_TASK_ROOT}
 # FROM stage2 as stage3
 LABEL version="0.1" \
     description="Containerized Lambda: SST Reassemble Grid"
-CMD [ "lambda_three_grid.lambda_handler_aggregate_grid" ]
+CMD [ "lambda_four_grid.lambda_handler_aggregate_grid" ]

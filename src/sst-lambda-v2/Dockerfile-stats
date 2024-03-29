@@ -15,4 +15,4 @@ COPY . ${LAMBDA_TASK_ROOT}
 # FROM stage2 as stage3
 LABEL version="0.1" \
     description="Containerized Lambda: SST Statistics"
-CMD [ "lambda_two_stats.lambda_handler_statistics" ]
+CMD [ "lambda_three_stats.lambda_handler_statistics" ]

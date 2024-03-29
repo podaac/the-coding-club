@@ -22,10 +22,15 @@ variable "ecr_repo_one" {
 
 variable "ecr_repo_two" {
   type        = string
-  description = "sst-lambda-stats container image repository name"
+  description = "sst-lambda-write container image repository name"
 }
 
 variable "ecr_repo_three" {
+  type        = string
+  description = "sst-lambda-stats container image repository name"
+}
+
+variable "ecr_repo_four" {
   type        = string
   description = "sst-lambda-grid container image repository name"
 }

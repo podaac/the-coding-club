@@ -59,6 +59,7 @@ docker login -u AWS https://$REGISTRY -p $(aws --profile $PROFILE ecr get-login-
 # Build
 #cd ..
 docker build -t $REGISTRY/$REPOSITORY -f $DOCKERFILE .
+#docker build --no-cache -t $REGISTRY/$REPOSITORY -f $DOCKERFILE .
 
 # # Push
 docker push $REGISTRY/$REPOSITORY

@@ -3,6 +3,8 @@
 import os
 import boto3
 import pandas as pd
+import numpy as np
+import awswrangler as wr
 
 
 def lambda_handler_statistics(event, context):
@@ -26,15 +28,8 @@ def lambda_handler_statistics(event, context):
     # Set up S3 client for user output bucket.
     s3 = boto3.client('s3')
 
-    # open the granule as an s3 obj
-    s3_file_obj = s3.open(input_path, mode='rb')
-
-    # ------------------------------------------------
-    # Explode the nc file to parquet geographic points
-    # ------------------------------------------------
-
-    # open data in xarray
-    df = pd.read_parquet(s3_file_obj)
+    # open data in pandas
+    df = wr.s3.read_parquet(path=input_path)
 
     # --------------------
     # calculate statistics
@@ -44,10 +39,13 @@ def lambda_handler_statistics(event, context):
 
     col_list_to_calc = ['analysed_sst']
 
-    results['sum'] = df[col_list_to_calc].sum().values[0]
-    results['mean'] = df[col_list_to_calc].mean().values[0]
-    results['variance'] = df[col_list_to_calc].var().values[0]
-    results['standard_dev'] = df[col_list_to_calc].std().values[0]
+    results['sum'] = df[col_list_to_calc].sum(skipna=True).values[0]
+    results['mean'] = df[col_list_to_calc].mean(skipna=True).values[0]
+    results['variance'] = df[col_list_to_calc].var(skipna=True).values[0]
+    results['standard_dev'] = df[col_list_to_calc].std(skipna=True).values[0]
+
+    if results['sum'] == 0:
+        results['sum'] = np.nan
 
     COLUMNS = [
         "point_id", "Y", "X", "lats", "lons",
@@ -68,18 +66,19 @@ def lambda_handler_statistics(event, context):
 
     pid = results['point_id']
 
-    output_key = 'result_statistics/' + str(pid) + '_result_statistics.parquet'
+    output_key = collection_name + '/result_statistics/' + str(pid) + '_result_statistics.parquet'
 
     # create the temp path for Lambda to write results to locally
-    tmp_file_path = '/tmp/' + collection_name + '/' + output_key
+    tmp_file_path = '/tmp/' + output_key
 
-    if not os.path.exists(tmp_file_path):
+    if not os.path.exists('/tmp/' + collection_name + '/result_statistics/'):
         print('creating directory: ' + '/tmp/' + collection_name + '/result_statistics/')
-        os.mkdir('/tmp/' + collection_name + '/result_statistics/' + str(pid) + '/')
+        os.makedirs('/tmp/' + collection_name + '/result_statistics/')
 
     # write the results to a parquet file
     try:
-        output.to_parquet(tmp_file_path)
+        print('writing tmp file: ' + tmp_file_path)
+        output.to_parquet(tmp_file_path, object_encoding='infer', engine='fastparquet')
     except Exception as e:
         print("Problem writing to tmp: " + str(e))
 

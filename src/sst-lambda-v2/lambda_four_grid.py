@@ -5,6 +5,7 @@ import boto3
 import pandas as pd
 import xarray as xr
 import numpy as np
+import awswrangler as wr
 
 
 def lambda_handler_aggregate_grid(event, context):
@@ -15,7 +16,8 @@ def lambda_handler_aggregate_grid(event, context):
     # --------------------
     # Unpack event payload
     # --------------------
-    input_granule_path = event["input_granule_s3path"]
+    input_path = event["input_s3path"]
+    collection_name = event["collection_name"]
 
     # get the name of the user's output S3 bucket
     output_s3_bucket = event["output_granule_s3bucket"]
@@ -27,15 +29,8 @@ def lambda_handler_aggregate_grid(event, context):
     # Set up S3 client for user output bucket.
     s3 = boto3.client('s3')
 
-    # open the granule as an s3 obj
-    s3_file_obj = s3.open(input_granule_path, mode='rb')
-
-    # ------------------------------------------------
-    # Explode the nc file to parquet geographic points
-    # ------------------------------------------------
-
     # open data in xarray
-    df = pd.read_parquet(s3_file_obj)
+    df = wr.s3.read_parquet(path=input_path)
 
     # --------------------
     # rebuild grid
@@ -105,13 +100,18 @@ def lambda_handler_aggregate_grid(event, context):
             "standard_dev": std_xr}
     )
 
-    output_key = 'result_statistics_gridded.nc'
+    output_key = collection_name + '/result_statistics_gridded.nc'
 
     # create the temp path for Lambda to write results to locally
     tmp_file_path = '/tmp/' + output_key
 
+    if not os.path.exists('/tmp/' + collection_name + '/'):
+        print('creating directory: ' + '/tmp/' + collection_name + '/')
+        os.makedirs('/tmp/' + collection_name + '/')
+
     # write the results to a parquet file
     try:
+        print("writing tmp file: %s", tmp_file_path)
         ds.to_netcdf(tmp_file_path)
     except Exception as e:
         print("Problem writing to tmp: " + str(e))

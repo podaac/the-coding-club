@@ -1,13 +1,78 @@
 """
 """
-import os
+import json
+import logging
+import base64
+import requests
 import s3fs
 import boto3
+import botocore
 import xarray as xr
 import pandas as pd
 import numpy as np
 
-import sst_functions
+S3_ENDPOINT_DICT = {
+    'podaac': 'https://archive.podaac.earthdata.nasa.gov/s3credentials'
+}
+
+
+# Handle EDL login & S3 credentials
+def get_creds(s3_endpoint, edl_username, edl_password):
+    """Request and return temporary S3 credentials.
+
+    Taken from: https://archive.podaac.earthdata.nasa.gov/s3credentialsREADME
+    """
+
+    login = requests.get(
+        s3_endpoint,
+        allow_redirects=False,
+        timeout=30
+    )
+    login.raise_for_status()
+
+    auth = f"{edl_username}:{edl_password}"
+    encoded_auth = base64.b64encode(auth.encode('ascii'))
+
+    auth_redirect = requests.post(
+        login.headers['location'],
+        data={"credentials": encoded_auth},
+        headers={"Origin": s3_endpoint},
+        allow_redirects=False,
+        timeout=30
+    )
+    auth_redirect.raise_for_status()
+    final = requests.get(
+        auth_redirect.headers['location'],
+        allow_redirects=False,
+        timeout=30)
+    results = requests.get(
+        s3_endpoint,
+        cookies={'accessToken': final.cookies['accessToken']},
+        timeout=30)
+    results.raise_for_status()
+    return json.loads(results.content)
+
+
+def get_temp_creds(prefix):
+    """retreive EDL credentials from AWS Parameter Store
+    """
+    try:
+        ssm_client = boto3.client('ssm', region_name="us-west-2")
+        edl_username = ssm_client.get_parameter(
+            Name=f"{prefix}-sst-edl-username",
+            WithDecryption=True)["Parameter"]["Value"]
+        edl_password = ssm_client.get_parameter(
+            Name=f"{prefix}-sst-edl-password",
+            WithDecryption=True)["Parameter"]["Value"]
+        print("Retrieved Earthdata login credentials.")
+    except botocore.exceptions.ClientError as error:
+        raise error
+
+    # use EDL creds to get AWS S3 Access Keys & Tokens
+    s3_creds = get_creds(S3_ENDPOINT_DICT[prefix], edl_username, edl_password)
+    print("Retrieved temporary S3 access credentials.")
+
+    return s3_creds
 
 
 def convert_to_dataframe(data_in):
@@ -89,6 +154,7 @@ def lambda_handler_explode(event, context):
     prefix = event["prefix"]
 
     input_granule_path = event["input_granule_s3path"]
+    collection_name = event["collection_name"]
 
     # get the name of the user's output S3 bucket
     output_s3_bucket = event["output_granule_s3bucket"]
@@ -98,7 +164,7 @@ def lambda_handler_explode(event, context):
     # ---------------------------------------------
 
     # Get EDL credentials from AWS Parameter Store
-    temp_creds_req = sst_functions.get_temp_creds(prefix)
+    temp_creds_req = get_temp_creds(prefix)
 
     # Set up S3 client for Earthdata buckets using EDL creds
     s3_client_in = s3fs.S3FileSystem(
@@ -111,8 +177,8 @@ def lambda_handler_explode(event, context):
     # open the granule as an s3 obj
     s3_file_obj = s3_client_in.open(input_granule_path, mode='rb')
 
-    # Set up S3 client for user output bucket.  
-    s3_out = boto3.client('s3')
+    # Set up lambda client to write out
+    lambda_client = boto3.client('lambda')
 
     # ------------------------------------------------
     # Explode the nc file to parquet geographic points
@@ -123,24 +189,22 @@ def lambda_handler_explode(event, context):
 
     sst_df = convert_to_dataframe(ds)
 
-    for i in range(sst_df.shape[0]):
-        row = sst_df[i:i+1]
+    BATCH_SIZE = 100
 
-        pid = row['point_id'][i]
-        ptime = row['time'][i]
+    for i in range(0, sst_df.shape[0], BATCH_SIZE):
+        chunk = sst_df[i: i + BATCH_SIZE]
+        print('Processing chunk ' + str(i))
+        print(chunk)
 
-        output_key = str(pid) + '/' + str(ptime) + '.parquet'
+        lambda_two_event = (
+            '{"input_rows":' + chunk.to_json()
+            + ',"output_granule_s3bucket":"' + output_s3_bucket
+            + '","collection_name":"' + collection_name + '"}')
 
-        # create the temp path for Lambda to write results to locally
-        tmp_file_path = '/tmp/' + output_key
+        print("Next lambda event payload: %s", lambda_two_event)
 
-        # write the results to a parquet file
-        try:
-            row.to_parquet(tmp_file_path, mode='w')
-        except Exception as e:
-            print("Problem writing to tmp: " + e)
-
-        s3_out.upload_file(tmp_file_path, output_s3_bucket, output_key)
-
-        if os.path.exists(tmp_file_path):
-            os.remove(tmp_file_path)
+        lambda_client.invoke(
+            FunctionName='podaac-sst-two',
+            InvocationType='Event',
+            Payload=lambda_two_event
+        )

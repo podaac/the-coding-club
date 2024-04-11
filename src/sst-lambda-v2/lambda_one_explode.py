@@ -189,7 +189,7 @@ def lambda_handler_explode(event, context):
 
     sst_df = convert_to_dataframe(ds)
 
-    BATCH_SIZE = 500
+    BATCH_SIZE = 100
 
     for i in range(0, sst_df.shape[0], BATCH_SIZE):
         chunk = sst_df[i: i + BATCH_SIZE]
